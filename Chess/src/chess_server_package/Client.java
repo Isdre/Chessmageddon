@@ -46,6 +46,9 @@ public class Client implements Runnable {
         listener = obj;
     }
 
+    /**
+     * zamyka połączenie z serverem
+     */
     public void shutdown() {
         done = true;
         try {
@@ -240,7 +243,6 @@ public class Client implements Runnable {
     /**
      * Wysyła zapytanie do serwera o listę aktywnych graczy
      * @return tablica graczy (jesli w grze, z dopiskiem inGame)
-     * @throws IOException wyjątek
      */
     public ArrayList<String> playersOnline() {
         send("/playersOnline");
@@ -349,6 +351,7 @@ public class Client implements Runnable {
      * Obsługuje logowanie się użytkownika.
      * @param name nazwa
      * @param password hasło
+     * @throws IOException wyjątek
      * @return czy zalogowany
      */
     public boolean login(String name, String password) throws IOException {
@@ -376,6 +379,7 @@ public class Client implements Runnable {
      *
      * @param name     nazwa
      * @param password hasło
+     * @throws IOException wyjątek
      * @return czy się powiodło
      */
     public boolean register(String name, String password) throws IOException {

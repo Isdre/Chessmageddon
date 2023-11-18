@@ -166,6 +166,9 @@ public class Server implements Runnable {
 
         /**
          * Obsługuje rejestrację użytkownika.
+         * @param n nazwa
+         * @param p hasło
+         * @return czy udało się zarejestrować
          */
         public boolean register(String n, String p) {
             if(database.correctRegister(n, p)) {
@@ -178,6 +181,9 @@ public class Server implements Runnable {
 
         /**
          * Obsługuje logowanie użytkownika.
+         * @param n nazwa
+         * @param p hasło
+         * @return czy udalo się zalogować
          */
         public boolean login(String n, String p) {
             if(database.correctLogin(n, p)) {

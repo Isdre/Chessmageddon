@@ -5,6 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * przykładkowa aplikacja
+ */
+
 public class Window implements ActionListener, MyListener {
     private JFrame frame;
     JPanel panel;
@@ -20,10 +24,17 @@ public class Window implements ActionListener, MyListener {
     JPanel panel1;
     JTextArea label;
     Client c;
+
+    /**
+     * konstruktor
+     */
     public Window() {
         inicjalize();
     }
 
+    /**
+     * inicjalizuje
+     */
     public void inicjalize() {
         c = new Client(this);
         Thread t = new Thread(c);
@@ -131,6 +142,10 @@ public class Window implements ActionListener, MyListener {
 
     }
 
+    /**
+     * main
+     * @param str str
+     */
     public static void main(String[] str) {
         Window w = new Window();
     }

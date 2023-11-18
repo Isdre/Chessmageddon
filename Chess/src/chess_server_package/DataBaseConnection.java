@@ -20,6 +20,12 @@ public class DataBaseConnection {
         }
     }
 
+    /**
+     * pomocnicza. Sprawdza czy dobre dane
+     * @param n nazwa
+     * @param p hasło
+     * @return czy dobre
+     */
     public boolean correctLogin(String n, String p) {
         try {
             Statement st = database.createStatement();
@@ -30,6 +36,13 @@ public class DataBaseConnection {
             return false;
         }
     }
+
+    /**
+     * pomocnicza Sprawdza czy dobre dane
+     * @param n nazwa
+     * @param p hasło
+     * @return czy dobre
+     */
     public boolean correctRegister(String n, String p) {
         try {
             Statement st = database.createStatement();
