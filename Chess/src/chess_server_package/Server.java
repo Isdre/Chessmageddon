@@ -18,7 +18,7 @@ public class Server implements Runnable {
     private boolean done;
     private ExecutorService pool;
     private final ArrayList<Game> games = new ArrayList<>();
-    private Connection database;
+    private DataBaseConnection database;
 
     /**
      * tworzy obiekt klasy chess_server_package.Server.
@@ -34,7 +34,7 @@ public class Server implements Runnable {
     @Override
     public void run() {
         try {
-            database = DriverManager.getConnection("jdbc:mysql://localhost:3306/ChessServer", "root", "");
+            database = new DataBaseConnection();
             server = new ServerSocket(9999);
             pool = Executors.newCachedThreadPool();
             System.out.println("chess_server_package.Server is running");
@@ -46,8 +46,6 @@ public class Server implements Runnable {
             }
         } catch (IOException e) {
             shutdown();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
     private void broadcast(String message) {
@@ -153,6 +151,8 @@ public class Server implements Runnable {
                     }
                 }
             }
+            System.out.println(nickname + " connected!    Online: " + connections.size());
+            broadcast(nickname + " joined!");
 //            systemMessage("Please enter your nickname: ");
 //            String supposedName = in.readLine();
 //            while(findUser(supposedName) != null) {
@@ -162,61 +162,38 @@ public class Server implements Runnable {
 //            nickname = supposedName;
 //            System.out.println(nickname + " connected!    Online: " + connections.size());
 //            broadcast(nickname + " joined!");
-            // TODO beginConnection
         }
 
         /**
          * Obsługuje rejestrację użytkownika.
          */
         public boolean register(String n, String p) {
-            try {
-                Statement st = database.createStatement();
-                ResultSet res = st.executeQuery("SELECT * FROM playerdata WHERE name='"+n+"'");
-                if(res.next()) {
-                    System.out.println("there is already such player");
-                    return false;
-                }
-                else {
-                    res = st.executeQuery("SELECT MAX(playerid) m FROM playerdata");
-                    res.next();
-                    int pid = res.getInt("m") + 1;
-                    PreparedStatement pr = database.prepareStatement("INSERT INTO playerdata (`playerid`, `name`, `password`) VALUES ('"+pid+"', '"+n+"', '"+p+"')");
-                    pr.execute();
-                    return true;
-                }
-            } catch(Exception e) {
-                System.out.println("failed statement");
-                return false;
+            if(database.correctRegister(n, p)) {
+                nickname = n;
+                return true;
             }
-            //TODO register
+            return false;
+
         }
 
         /**
          * Obsługuje logowanie użytkownika.
          */
         public boolean login(String n, String p) {
-            try {
-                Statement st = database.createStatement();
-                ResultSet res = st.executeQuery("SELECT * FROM playerdata WHERE name='"+n+"' AND password='"+p+"'");
-                boolean tmp = res.next();
-                nickname = res.getString("name");
-                return tmp;
-            } catch(Exception e) {
-                System.out.println("failed statement");
-                return false;
+            if(database.correctLogin(n, p)) {
+                for(ConnectionHandler c : connections) {
+                    if(c.nickname.equals(n)) {
+                        System.out.println("Already logged in");
+                        return false;
+                    }
+                }
+                nickname = n;
+                return true;
             }
-            //TODO login
+            return false;
+
         }
 
-        /**
-         * Pyta bazę danych czy użytkownik o takiej nazwie i haśle istnieje
-         * @param password hash hasła użytkownika
-         * @return prawda jeśli hasło poprawne, false jeśli nie
-         */
-        public boolean correctPassword(String password) {
-            return false;
-            //TODO correctPassword
-        }
 
 //        /**
 //         * Obsługuje zmianę hasła.
@@ -224,7 +201,7 @@ public class Server implements Runnable {
 //         */
 //        public void changePassword(String newPassword) {
 //            return;
-//            //TODO changePassword
+//            //TOD changePassword
 //        }
 //
 //        /**
@@ -233,7 +210,7 @@ public class Server implements Runnable {
 //         */
 //        public void changeName(String newName) {
 //            return;
-//            //TODO changeName
+//            //TOD changeName
 //        }
 
         /**
@@ -305,6 +282,15 @@ public class Server implements Runnable {
             }
             else if(message.startsWith("/reject")) {
                 reject();
+            }
+            else if(message.startsWith("/getPlayerGames")) {
+                sendPlayerGamesMessage(nickname);
+            }
+            else if(message.startsWith("/getAllPlayersStats")) {
+                sendAllPlayersStatistics();
+            }
+            else if(message.startsWith("/getPlayerStats")) {
+                sendPlayerStatistics(nickname);
             }
 //            else if(message.startsWith("/getGame")) {
 //                getGame();
@@ -431,6 +417,11 @@ public class Server implements Runnable {
         public void confirm() {
             if(inviter != null) {
                 ConnectionHandler ch = findUser(inviter);
+                if(ch.game != null) {
+                    systemMessage("someone else accepted earlier");
+                    inviter=null;
+                    return;
+                }
                 game = new Game(this, ch);
                 ch.game = game;
                 System.out.println("New game: " + game.players[0].nickname + " " + game.players[1].nickname);
@@ -508,16 +499,17 @@ public class Server implements Runnable {
          * @param name imię gracza
          */
         public void sendPlayerGamesMessage(String name) {
+            String games = database.getPlayerGamesMessage(name);
+            sendMessage("P" + games);
             return;
-            //TODO sendPlayerGamesMessage
         }
 
         /**
          * Wysyła do użytkownika informacje o statystykach wszystkich graczy.
          */
         public void sendAllPlayersStatistics() {
+            sendMessage("P" + database.getAllPlayersStatistics());
             return;
-            //TODO sendAllPlayersStatistics
         }
 
         /**
@@ -525,8 +517,8 @@ public class Server implements Runnable {
          * @param name nazwa gracza.
          */
         public void sendPlayerStatistics(String name) {
+            sendMessage("P" + database.getPlayerStatistics(nickname));
             return;
-            //TODO sendPlayerStatistics
         }
 
         /**

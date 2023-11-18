@@ -46,7 +46,7 @@ public class Client implements Runnable {
         listener = obj;
     }
 
-    private void shutdown() {
+    public void shutdown() {
         done = true;
         try {
             in.close();
@@ -249,7 +249,7 @@ public class Client implements Runnable {
         }
         transfer=false;
         ArrayList<String> players = new ArrayList<>();
-        String[] tmp1 = messageContainer.split(",");
+        String[] tmp1 = messageContainer.substring(1).split(",");
         players.addAll(Arrays.asList(tmp1));
         return players;
     }
@@ -291,8 +291,19 @@ public class Client implements Runnable {
      * @return lista gier gracza
      */
     public ArrayList<ArrayList<String>> getPlayerGames() {
-        return null;
-        // TODO getPlayerGames
+        send("/getPlayerGames");
+        while(!transfer) {
+            System.out.print("");
+        }
+        transfer=false;
+        String[] tmp = messageContainer.substring(1).split("/");
+        ArrayList<ArrayList<String>> games = new ArrayList<>();
+        for(String i : tmp) {
+            ArrayList<String> tmp2 = new ArrayList<>();
+            tmp2.addAll(Arrays.asList(i.split(",")));
+            games.add(tmp2);
+        }
+        return games;
     }
 
     /**
@@ -300,9 +311,21 @@ public class Client implements Runnable {
      * Kolumny: liczba gier, liczba wygranych, liczba przegranych, liczba remisów, data utworzenia konta.
      * @return lista list statystyk wszystkich graczy.
      */
-    public ArrayList<ArrayList<String>> getPlayersStatistics() {
-        return null;
-        // TODO getPlayersStatistics
+    public ArrayList<ArrayList<String>> getAllPlayersStatistics() {
+        send("/getAllPlayersStats");
+        while(!transfer) {
+            System.out.print("");
+        }
+        transfer=false;
+        String[] tmp = messageContainer.substring(1).split("/");
+        System.out.println(tmp);
+        ArrayList<ArrayList<String>> stats = new ArrayList<>();
+        for(String i : tmp) {
+            ArrayList<String> tmp2 = new ArrayList<>();
+            tmp2.addAll(Arrays.asList(i.split(",")));
+            stats.add(tmp2);
+        }
+        return stats;
     }
 
     /**
@@ -310,15 +333,23 @@ public class Client implements Runnable {
      * Kolumny: liczba gier, liczba wygranych, liczba przegranych, liczba remisów, data utworzenia konta.
      * @return lista statystyk gracza.
      */
-    public ArrayList<String> getMyStatistics() {
-        return null;
-        //TODO getMyStatistics
+    public ArrayList<String> getPlayerStatistics() {
+        send("/getPlayerStats");
+        while(!transfer) {
+            System.out.print("");
+        }
+        transfer=false;
+        String[] tmp = messageContainer.substring(1).split(",");
+        ArrayList<String> stats = new ArrayList<>();
+        stats.addAll(Arrays.asList(tmp));
+        return stats;
     }
 
     /**
      * Obsługuje logowanie się użytkownika.
      * @param name nazwa
      * @param password hasło
+     * @return czy zalogowany
      */
     public boolean login(String name, String password) throws IOException {
         if(Objects.equals(name, "") || Objects.equals(password, "")) {
@@ -338,7 +369,6 @@ public class Client implements Runnable {
         else {
             return false;
         }
-        // TODO login
     }
 
     /**
@@ -360,7 +390,6 @@ public class Client implements Runnable {
         }
         assert inMessage != null;
         return inMessage.equals("Right");
-        //TODO register
     }
 
 //    /**
@@ -370,7 +399,7 @@ public class Client implements Runnable {
 //     * @param newPassword nowe hasło
 //     */
 //    public void changePassword(String name, String oldPassword, String newPassword) {
-//        //TODO changePassword
+//        //TOD changePassword
 //    }
 //
 //    /**
@@ -378,7 +407,7 @@ public class Client implements Runnable {
 //     * @param newName nowa nazwa
 //     */
 //    public void changeName(String newName) {
-//        //TODO changeName
+//        //TOD changeName
 //    }
 
 

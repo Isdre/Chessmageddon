@@ -11,10 +11,14 @@ public class Window implements ActionListener, MyListener {
     JButton lb;
     JButton rb;
     JButton pl;
+    JButton pg;
+    JButton aps;
+    JButton ps;
+    JButton q;
     JTextField name;
     JTextField pass;
     JPanel panel1;
-    JLabel label;
+    JTextArea label;
     Client c;
     public Window() {
         inicjalize();
@@ -27,7 +31,7 @@ public class Window implements ActionListener, MyListener {
         frame = new JFrame();
         this.frame.setTitle("Button");
         this.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.frame.setSize(400, 300);
+        this.frame.setSize(600, 300);
         this.frame.setResizable(true);
         this.frame.setLocationRelativeTo(null);
 
@@ -58,14 +62,36 @@ public class Window implements ActionListener, MyListener {
         pl.addActionListener(this);
         panel.add(pl);
 
+        pg = new JButton("playerGames");
+        pg.setBackground(Color.WHITE);
+        pg.addActionListener(this);
+        panel.add(pg);
+
+        aps = new JButton("allPlayersStatistics");
+        aps.setBackground(Color.WHITE);
+        aps.addActionListener(this);
+        panel.add(aps);
+
+        ps = new JButton("playerStatistics");
+        ps.setBackground(Color.WHITE);
+        ps.addActionListener(this);
+        panel.add(ps);
+
+        q = new JButton("quit");
+        q.setBackground(Color.WHITE);
+        q.addActionListener(this);
+        panel.add(q);
+
 
         panel1 = new JPanel();
         panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
         panel1.setBackground(Color.DARK_GRAY);
 
-        label = new JLabel("");
+        label = new JTextArea("");
         label.setForeground(Color.BLACK);
         label.setFont(new Font("Dialog", Font.PLAIN, 20));
+        label.setColumns(20);
+        label.setLineWrap(true);
         panel1.add(label);
 
         frame.add(panel, BorderLayout.WEST);
@@ -85,7 +111,19 @@ public class Window implements ActionListener, MyListener {
                 label.setText(String.valueOf(c.register(name.getText(), pass.getText())));
             }
             if(e.getSource() == pl) {
-                System.out.println(c.playersOnline());
+                label.setText(c.playersOnline().toString());
+            }
+            if(e.getSource() == pg) {
+                label.setText(c.getPlayerGames().toString());
+            }
+            if(e.getSource() == aps) {
+                label.setText(c.getAllPlayersStatistics().toString());
+            }
+            if(e.getSource() == ps) {
+                label.setText(c.getPlayerStatistics().toString());
+            }
+            if(e.getSource() == q) {
+                c.send("/quit");
             }
         } catch(Exception ex) {
             System.out.println("BRUH");
