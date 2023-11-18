@@ -134,7 +134,7 @@ public class Window implements ActionListener, MyListener {
                 label.setText(c.getPlayerStatistics().toString());
             }
             if(e.getSource() == q) {
-                c.send("/quit");
+                c.quit();
             }
         } catch(Exception ex) {
             System.out.println("BRUH");

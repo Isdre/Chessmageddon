@@ -62,6 +62,7 @@ public class Client implements Runnable {
         }
     }
 
+
 //    class InputHandler implements Runnable {
 //        @Override
 //        public void run() {
@@ -90,6 +91,7 @@ public class Client implements Runnable {
         /**
          * Implementuje metodę run() z {@link Runnable}
          */
+
         @Override
         public void run() {
             try {
