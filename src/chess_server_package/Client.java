@@ -322,7 +322,6 @@ public class Client implements Runnable {
         }
         transfer=false;
         String[] tmp = messageContainer.substring(1).split("/");
-        System.out.println(tmp);
         ArrayList<ArrayList<String>> stats = new ArrayList<>();
         for(String i : tmp) {
             ArrayList<String> tmp2 = new ArrayList<>();
@@ -364,7 +363,7 @@ public class Client implements Runnable {
         send(tmp);
         String inMessage;
         while((inMessage = in.readLine()) != null && !inMessage.equals("Wrong") && !inMessage.equals("Right")) {
-            System.out.println("loging in: " + inMessage);
+            System.out.print("");
         }
         assert inMessage != null;
         if(inMessage.equals("Right")) {
