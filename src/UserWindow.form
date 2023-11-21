@@ -27,7 +27,7 @@
         <properties>
           <name value="Username"/>
         </properties>
-        <border type="line" title="Username"/>
+        <border type="line"/>
         <children>
           <grid id="e6085" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
@@ -139,7 +139,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <text value="Button"/>
+                      <text value="Accept"/>
                     </properties>
                   </component>
                   <component id="89ff5" class="javax.swing.JButton" binding="_rejectInv">
@@ -151,7 +151,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <text value="Button"/>
+                      <text value="Reject"/>
                     </properties>
                   </component>
                 </children>

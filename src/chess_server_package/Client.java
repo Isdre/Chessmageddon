@@ -29,7 +29,7 @@ public class Client implements Runnable {
     private boolean loggedin;
     private boolean transfer;
     private String messageContainer = "";
-
+    public String nick;
     /**
      * Informuje czy podłączono się do serwera
      * @return zwraca true jeśli podłączono i false w przeciwnym wypadku
@@ -372,6 +372,7 @@ public class Client implements Runnable {
             System.out.print("");
         }
         assert inMessage != null;
+        nick = name;
         if(inMessage.equals("Right")) {
             loggedin = true;
             return true;
@@ -400,6 +401,7 @@ public class Client implements Runnable {
             System.out.println("registering in: " + inMessage);
         }
         assert inMessage != null;
+        nick = name;
         return inMessage.equals("Right");
     }
 

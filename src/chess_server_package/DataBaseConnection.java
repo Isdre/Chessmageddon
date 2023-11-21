@@ -1,7 +1,6 @@
 package chess_server_package;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 /**
  * Klasa DataBaseConnection obsługuje połączenie z bazą danych oraz pobieranie i konwertowanie z niej wartości.
@@ -14,7 +13,7 @@ public class DataBaseConnection {
     public DataBaseConnection() {
         try {
             database = DriverManager.getConnection("jdbc:mysql://localhost:3306/ChessServer", "root", "");
-
+            //database = DriverManager.getConnection("jdbc:mysql://localhost:3306/chessapp", "root", "");
         } catch(Exception e) {
             System.out.println("database connection failed");
         }
