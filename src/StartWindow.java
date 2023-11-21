@@ -34,6 +34,8 @@ public class StartWindow extends JFrame implements ActionListener, MyListener {
         player = new Client((MyListener) this);
         _buttonLog.addActionListener(this);
         _buttonSign.addActionListener(this);
+        Thread t = new Thread(player);
+        t.start();
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -48,7 +50,7 @@ public class StartWindow extends JFrame implements ActionListener, MyListener {
 
     public boolean loginPerformed() {
         try {
-            return  player.login(_login.getPassword().toString(), _passwordLog.getPassword().toString());
+            return  player.login(String.valueOf(_login.getPassword()), String.valueOf(_passwordLog.getPassword()));
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
