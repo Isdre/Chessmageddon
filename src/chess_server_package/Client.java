@@ -25,7 +25,7 @@ public class Client implements Runnable {
     private PrintWriter out;
     private  boolean done = false;
     private String board = " "; //-----------------------------------------ustawienie poczatkowe szachow
-    private final MyListener listener;
+    public MyListener listener;
     private boolean loggedin;
     private boolean transfer;
     private String messageContainer = "";
