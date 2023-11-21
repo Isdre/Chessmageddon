@@ -45,7 +45,7 @@ public class Test implements MyListener {
             case MOVE -> System.out.println("MOVE: " + message);
             case CONFIRM -> System.out.println("CONFIRMED " + message);
             case REJECT -> System.out.println("REJECTED " + message);
-            case null, default -> System.out.println("!unhandled! " + message);
+            default -> System.out.println("!unhandled! " + message);
         }
     }
 }

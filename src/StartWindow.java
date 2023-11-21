@@ -1,4 +1,5 @@
 import chess_server_package.Client;
+import chess_server_package.MessType;
 import chess_server_package.MyListener;
 
 import javax.swing.*;
@@ -7,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 
-public class StartWindow extends JFrame implements ActionListener {
+public class StartWindow extends JFrame implements ActionListener, MyListener {
     private Client player;
     private JPanel Background;
     private JPanel Start;
@@ -60,4 +61,6 @@ public class StartWindow extends JFrame implements ActionListener {
             throw new RuntimeException(ex);
         }
     }
+
+    public void performed(String message, MessType type){};
 }

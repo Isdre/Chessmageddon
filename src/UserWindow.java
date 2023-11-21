@@ -18,7 +18,7 @@ public class UserWindow extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setContentPane(Content);
-        setSize(800,600);
+        setSize(600,400);
         setVisible(true);
     }
 }
