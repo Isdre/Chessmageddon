@@ -180,6 +180,9 @@ public class Client implements Runnable {
                 else if(inMessage.startsWith("P")) {
                     transfer = true;
                 }
+                else if(inMessage.startsWith("I")) {
+                    invited(inMessage.substring(1));
+                }
                 else {
                     System.out.println("UNHANDLED: " + inMessage);
                 }
@@ -232,6 +235,9 @@ public class Client implements Runnable {
 //        System.out.println("Move: " + board);
         listener.performed(board, MessType.MOVE);
 
+    }
+    private void invited(String nick) {
+        listener.performed(nick, MessType.INVITED);
     }
 
     /**

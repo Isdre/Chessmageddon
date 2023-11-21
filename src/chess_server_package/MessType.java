@@ -23,5 +23,6 @@ public enum MessType {
     /**
      * przeciwnik odrzucił zaproszenie do gry
      */
-    REJECT
+    REJECT,
+    INVITED
 }

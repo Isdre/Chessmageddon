@@ -400,6 +400,7 @@ public class Server implements Runnable {
                 if(ch.game == null) {
                     ch.systemMessage("Wanna play with: " + nickname + "?");
                     ch.inviter = nickname;
+                    ch.inviteMessage(nickname);
                 }
                 else { systemMessage("Player already in another game"); }
             }
@@ -433,7 +434,7 @@ public class Server implements Runnable {
                 System.out.println("New game: " + game.players[0].nickname + " " + game.players[1].nickname);
                 systemMessage("In game with: " + game.players[1].nickname);
                 ch.systemMessage("In game with: " + game.players[0].nickname);
-                ch.confirmMessage("unimportant");
+                ch.confirmMessage(inviter);
                 games.add(game); //na koniec if-a
             }
         }
@@ -500,6 +501,7 @@ public class Server implements Runnable {
          * @param message wiadomość
          */
         public void rejectMessage(String message) {sendMessage("R" + message);}
+        public void inviteMessage(String nick) {sendMessage("I" + nick);}
         /**
          * Wysyła do użytkownika informacje o partiach gracza.
          * @param name imię gracza
