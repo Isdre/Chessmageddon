@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 
 /**
  * przykładkowa aplikacja
@@ -125,16 +126,21 @@ public class Window implements ActionListener, MyListener {
                 label.setText(c.playersOnline().toString());
             }
             if(e.getSource() == pg) {
-                label.setText(c.getPlayerGames().toString());
+                String tmp = c.getPlayerGames().toString();
+                String result = tmp.replaceAll("],", "\n");
+                label.setText(result);
             }
             if(e.getSource() == aps) {
-                label.setText(c.getAllPlayersStatistics().toString());
+                String tmp = c.getAllPlayersStatistics().toString();
+                String result = tmp.replaceAll("],", "\n");
+                label.setText(result);
             }
             if(e.getSource() == ps) {
                 label.setText(c.getPlayerStatistics().toString());
             }
             if(e.getSource() == q) {
                 c.quit();
+                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
             }
         } catch(Exception ex) {
             System.out.println("BRUH");
