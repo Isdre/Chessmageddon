@@ -151,9 +151,7 @@ public class Server implements Runnable {
                     }
                 }
             }
-            if(in.readLine() == null) {
-                return;
-            }
+
             System.out.println(nickname + " connected!    Online: " + connections.size());
             broadcast(nickname + " joined!");
 //            systemMessage("Please enter your nickname: ");
