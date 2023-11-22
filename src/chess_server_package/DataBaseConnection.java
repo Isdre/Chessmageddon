@@ -76,7 +76,7 @@ public class DataBaseConnection {
                     "COALESCE((SELECT name FROM ChessServer.playerdata WHERE playerid=player2id), 'DELETED') opponent,\n" +
                     "COALESCE((SELECT name \n" +
                     "\tFROM ChessServer.playerdata WHERE (playerid=player1id AND winner=1) \n" +
-                    "    OR (playerid=player2id) AND winner=2), 'DELETED') winner\n" +
+                    "    OR (playerid=player2id) AND winner=2), 'REMIS') winner\n" +
                     "FROM ChessServer.gamedata\n" +
                     "WHERE player1id = (SELECT playerid FROM ChessServer.playerdata WHERE name='"+name+"');");
             String tmp = "";
