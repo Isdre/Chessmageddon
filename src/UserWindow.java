@@ -7,7 +7,6 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class UserWindow extends JFrame implements MyListener {
     private Client player;
@@ -43,13 +42,7 @@ public class UserWindow extends JFrame implements MyListener {
                 pack();
             }
         } );
-        //System.out.println("AAAA");
-        ArrayList<String> players = player.playersOnline();
-        System.out.println(players);
-        for (String x: players) {
-            onlinePlayers.add(new JLabel(x));
-        }
-        //System.out.println("BBBB");
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setContentPane(Content);
@@ -65,13 +58,6 @@ public class UserWindow extends JFrame implements MyListener {
                     inv.setVisible(true);
                     pack();
                     break;
-            case SYSTEM_MESSAGE:
-                ArrayList<String> players = player.playersOnline();
-                onlinePlayers.removeAll();
-                for (String x: players) {
-                    onlinePlayers.add(new JLabel(x));
-                }
-                break;
             default: break;
         }
     }
