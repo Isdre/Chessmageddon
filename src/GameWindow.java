@@ -1,8 +1,6 @@
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import Chess.ChessBoard;
+
+import javax.swing.*;
 
 public class GameWindow extends JFrame{
     private JPanel Content;
@@ -17,5 +15,9 @@ public class GameWindow extends JFrame{
         setContentPane(Content);
         setSize(800,600);
         setVisible(true);
+    }
+
+    public static void main(String[] args){
+        new GameWindow();
     }
 }

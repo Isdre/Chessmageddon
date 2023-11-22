@@ -26,7 +26,7 @@ public class StartWindow extends JFrame implements ActionListener, MyListener {
     private JLabel TEST_1;
 
     public StartWindow() {
-        super("TEST_1 Log In");
+        super("TEST_2");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(Start);
         setSize(600,400);
