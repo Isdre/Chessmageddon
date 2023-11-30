@@ -161,6 +161,12 @@ public class DataBaseConnection {
         return null;
     }
 
+    /**
+     * dodaje grę użytkowników do bazy danych
+     * @param player1 gracz1
+     * @param player2 gracz2
+     * @param winner który zwyciężył
+     */
     public void addGame(String player1, String player2, int winner) {
         int looser;
         if(winner == 0) {

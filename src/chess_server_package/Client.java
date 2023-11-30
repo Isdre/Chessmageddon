@@ -63,27 +63,6 @@ public class Client implements Runnable {
     }
 
 
-//    class InputHandler implements Runnable {
-//        @Override
-//        public void run() {
-//            while (!done) {
-//                while (input == null) {
-//                    Thread.onSpinWait();
-//                }
-//                String message = input;
-//                input = null;
-//                if(message.equals("/quit")) {
-//                    out.println(message);
-//                    shutdown();
-//                    break;
-//                }
-//                else {
-//                    out.println(message);
-//                }
-//            }
-//        }
-//    }
-
     /**
      * Klasa TestInput obsługuje wejście z konsoli. Służy do testowania programu z poziomu konsoli. Nie należy używać w końcowym programie.
      */
@@ -112,17 +91,12 @@ public class Client implements Runnable {
         }
     }
 
-//    public static void main(String[] args) {
-//        chess_server_package.Client client = new chess_server_package.Client();
-//        client.run();
-//    }
-
 
     /**
      * Wysyla wiadomosc na serwer. Nie uzywac jesli mozesz skorzystac z: <p>
      * {@link #playWith(String)},
      * {@link #playersOnline()},
-     * @link #confirm(char color),
+     * {@link #confirm(char)},
      * {@link #reject()},
      * {@link #messageOpponent(String)},
      * {@link #makeMove(String)}
@@ -150,10 +124,6 @@ public class Client implements Runnable {
             TestInput testInput = new TestInput();
             Thread t1 = new Thread(testInput);
             t1.start();
-
-//            InputHandler inHandler = new InputHandler();
-//            Thread t = new Thread(inHandler);
-//            t.start();
 
             String inMessage;
             while(!loggedin) {
@@ -189,7 +159,7 @@ public class Client implements Runnable {
 
             }
         } catch (IOException e) {
-            // unlucky
+            System.out.println("Brak polaczenia");
         }
     }
 
@@ -412,44 +382,4 @@ public class Client implements Runnable {
         nick = name;
         return inMessage.equals("Right");
     }
-
-//    /**
-//     * Obsługuje zmianę hasła użytkownika
-//     * @param name nazwa
-//     * @param oldPassword stare hasło
-//     * @param newPassword nowe hasło
-//     */
-//    public void changePassword(String name, String oldPassword, String newPassword) {
-//        //TOD changePassword
-//    }
-//
-//    /**
-//     * Obsługuje zmianę nazwy użytkownika
-//     * @param newName nowa nazwa
-//     */
-//    public void changeName(String newName) {
-//        //TOD changeName
-//    }
-
-
-//    public void getGame() {
-//        send("/getGame");
-//            String inMessage = "";
-//            try {
-//                while((inMessage = in.readLine()) != null && !inMessage.startsWith("S|")) {
-//                    System.out.println("?? " + inMessage);
-//                }
-//                System.out.println(inMessage);
-//                String s = inMessage.substring(2);
-//                ArrayList<String> s1 = new ArrayList<>(Arrays.asList(s.split("]")));
-//                System.out.println(s1);
-//                ArrayList<ArrayList<String>> s2 = new ArrayList<>();
-//                for(String x: s1) {
-//                    s2.add(new ArrayList<String>(Arrays.asList(x.split(","))));
-//                }
-//                System.out.println(s2);
-//            } catch (Exception e) {
-//
-//            }
-//    }
 }

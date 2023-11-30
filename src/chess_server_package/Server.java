@@ -154,15 +154,7 @@ public class Server implements Runnable {
 
             System.out.println(nickname + " connected!    Online: " + connections.size());
             broadcast(nickname + " joined!");
-//            systemMessage("Please enter your nickname: ");
-//            String supposedName = in.readLine();
-//            while(findUser(supposedName) != null) {
-//                systemMessage("Please choose another nickname: ");
-//                supposedName = in.readLine();
-//            }
-//            nickname = supposedName;
-//            System.out.println(nickname + " connected!    Online: " + connections.size());
-//            broadcast(nickname + " joined!");
+
         }
 
         /**
@@ -299,9 +291,6 @@ public class Server implements Runnable {
             else if(message.startsWith("/getPlayerStats")) {
                 sendPlayerStatistics(nickname);
             }
-//            else if(message.startsWith("/getGame")) {
-//                getGame();
-//            }
         }
 
         /**
@@ -458,28 +447,6 @@ public class Server implements Runnable {
                 inviter = null;
             }
         }
-//        public void getGame() {
-//            System.out.println("Tak");
-//            ArrayList<ArrayList<String>> tmp = new ArrayList<>();
-//            tmp.add(new ArrayList<String>());
-//            tmp.add(new ArrayList<String>());
-//            tmp.add(new ArrayList<String>());
-//            tmp.get(0).add("uno");
-//            tmp.get(0).add("duo");
-//            tmp.get(1).add("ter");
-//            tmp.get(1).add("kwar");
-//            tmp.get(2).add(("kwin"));
-//            tmp.get(2).add("sek");
-//            StringBuilder str = new StringBuilder();
-//            for (ArrayList<String> x: tmp) {
-//                for (String y: x) {
-//                    str.append(y).append(",");
-//                }
-//                str.append("]");
-//            }
-//            System.out.println(str);
-//            systemMessage("|" + str);
-//        }
 
         /**
          * wysyła wiadomość do użytkownika
