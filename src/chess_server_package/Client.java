@@ -153,6 +153,9 @@ public class Client implements Runnable {
                 else if(inMessage.startsWith("I")) {
                     invited(inMessage.substring(1));
                 }
+                else if(inMessage.startsWith("E")) {
+                    endGame(inMessage.substring(1));
+                }
                 else {
                     System.out.println("UNHANDLED: " + inMessage);
                 }
@@ -208,6 +211,9 @@ public class Client implements Runnable {
     }
     private void invited(String nick) {
         listener.performed(nick, MessType.INVITED);
+    }
+    private void endGame(String winner) {
+        listener.performed(winner, MessType.GAME_ENDED);
     }
 
     /**

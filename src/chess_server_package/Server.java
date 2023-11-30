@@ -321,6 +321,8 @@ public class Server implements Runnable {
                 tmp.players[winning].systemMessage("You won");
                 tmp.players[loosing].systemMessage("You lost");
                 database.addGame(tmp.players[0].nickname, tmp.players[1].nickname, winning+1);
+                tmp.players[0].sendMessage("E" + tmp.players[winning].nickname);
+                tmp.players[1].sendMessage("E" + tmp.players[winning].nickname);
             }
             else if(winner == 2) {
                 int winning = this.nickname.equals(tmp.players[0].nickname) ? 1 : 0;
@@ -328,11 +330,15 @@ public class Server implements Runnable {
                 tmp.players[winning].systemMessage("You won");
                 tmp.players[loosing].systemMessage("You lost");
                 database.addGame(tmp.players[0].nickname, tmp.players[1].nickname, winning+1);
+                tmp.players[0].sendMessage("E" + tmp.players[winning].nickname);
+                tmp.players[1].sendMessage("E" + tmp.players[winning].nickname);
             }
             else if(winner == 0) {
                 tmp.players[0].systemMessage("Draw");
                 tmp.players[1].systemMessage("Draw");
                 database.addGame(tmp.players[0].nickname, tmp.players[1].nickname, 0);
+                tmp.players[0].sendMessage("EDRAW");
+                tmp.players[1].sendMessage("EDRAW");
             }
             tmp.players[0].systemMessage("endOfGame");
             tmp.players[0].game = null;
