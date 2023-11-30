@@ -285,7 +285,7 @@ public class Server implements Runnable {
                 playersOnline();
             }
             else if(message.startsWith("/confirm")) {
-                confirm();
+                confirm(message.charAt(9));
             }
             else if(message.startsWith("/reject")) {
                 reject();
@@ -316,7 +316,7 @@ public class Server implements Runnable {
                 makeMove(message);
             }
             else if(message.startsWith("E")) {
-                endGame(1);
+                endGame(Integer.parseInt(message.substring(1)));
             }
         }
 
@@ -327,22 +327,29 @@ public class Server implements Runnable {
         public void endGame(int winner) {
             Game tmp = new Game(game.players[0], game.players[1]);
             if(winner == 1) {
-                tmp.players[0].systemMessage("You won");
-                tmp.players[1].systemMessage("You lost");
+                int winning = this.nickname.equals(tmp.players[0].nickname) ? 0 : 1;
+                int loosing = this.nickname.equals(tmp.players[0].nickname) ? 1 : 0;
+                tmp.players[winning].systemMessage("You won");
+                tmp.players[loosing].systemMessage("You lost");
+                database.addGame(tmp.players[0].nickname, tmp.players[1].nickname, winning+1);
             }
             else if(winner == 2) {
-                tmp.players[0].systemMessage("You lost");
-                tmp.players[1].systemMessage("You won");
+                int winning = this.nickname.equals(tmp.players[0].nickname) ? 1 : 0;
+                int loosing = this.nickname.equals(tmp.players[0].nickname) ? 1 : 0;
+                tmp.players[winning].systemMessage("You won");
+                tmp.players[loosing].systemMessage("You lost");
+                database.addGame(tmp.players[0].nickname, tmp.players[1].nickname, winning+1);
             }
             else if(winner == 0) {
                 tmp.players[0].systemMessage("Draw");
                 tmp.players[1].systemMessage("Draw");
+                database.addGame(tmp.players[0].nickname, tmp.players[1].nickname, 0);
             }
             tmp.players[0].systemMessage("endOfGame");
             tmp.players[0].game = null;
             tmp.players[1].systemMessage("endOfGame");
             tmp.players[1].game = null;
-            Server.this.games.remove(this);
+            // Server.this.games.remove(this);
         }
 
         /**
@@ -422,7 +429,7 @@ public class Server implements Runnable {
         /**
          * Obsługuje potwierdzenie zaproszenia.
          */
-        public void confirm() {
+        public void confirm(char color) {
             if(inviter != null) {
                 ConnectionHandler ch = findUser(inviter);
                 if(ch.game != null) {
@@ -435,7 +442,7 @@ public class Server implements Runnable {
                 System.out.println("New game: " + game.players[0].nickname + " " + game.players[1].nickname);
                 systemMessage("In game with: " + game.players[1].nickname);
                 ch.systemMessage("In game with: " + game.players[0].nickname);
-                ch.confirmMessage(inviter);
+                ch.confirmMessage(color + inviter);
                 games.add(game); //na koniec if-a
             }
         }

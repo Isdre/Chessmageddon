@@ -160,4 +160,34 @@ public class DataBaseConnection {
         }
         return null;
     }
+
+    public void addGame(String player1, String player2, int winner) {
+        int looser;
+        if(winner == 0) {
+            looser = 0;
+        }
+        else {
+            looser = winner == 1 ? 2 : 1;
+        }
+        try {
+            PreparedStatement pr = database.prepareStatement("INSERT INTO ChessServer.gamedata\n" +
+                    "(gameid, gamedate, player1id, player2id, winner)\n" +
+                    "VALUES ((SELECT MAX(gameid)+1 FROM ChessServer.gamedata tmp), \n" +
+                    "\t\tcurrent_date(),\n" +
+                    "        (SELECT playerid FROM ChessServer.playerdata WHERE name = '"+player1+"'),\n" +
+                    "\t\t(SELECT playerid FROM ChessServer.playerdata WHERE name = '"+player2+"'),\n" +
+                    "        CAST('"+winner+"'AS INTEGER));\n" +
+                    "INSERT INTO ChessServer.gamedata\n" +
+                    "(gameid, gamedate, player1id, player2id, winner)\n" +
+                    "VALUES ((SELECT MAX(gameid)+1 FROM ChessServer.gamedata tmp), \n" +
+                    "\t\tcurrent_date(),\n" +
+                    "        (SELECT playerid FROM ChessServer.playerdata WHERE name = '"+player2+"'),\n" +
+                    "\t\t(SELECT playerid FROM ChessServer.playerdata WHERE name = '"+player1+"'),\n" +
+                    "        CAST('"+looser+"' AS INTEGER));");
+            pr.execute();
+        } catch (Exception e) {
+            System.out.println("Dodawanie gier do bazy");
+        }
+
+    }
 }

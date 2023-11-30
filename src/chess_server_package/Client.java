@@ -122,7 +122,7 @@ public class Client implements Runnable {
      * Wysyla wiadomosc na serwer. Nie uzywac jesli mozesz skorzystac z: <p>
      * {@link #playWith(String)},
      * {@link #playersOnline()},
-     * {@link #confirm()},
+     * @link #confirm(char color),
      * {@link #reject()},
      * {@link #messageOpponent(String)},
      * {@link #makeMove(String)}
@@ -267,8 +267,8 @@ public class Client implements Runnable {
     /**
      * Jesli gracz zostal zaproszony, informuje serwer, że przyjmuje zaproszenie tym samym dolaczajac siebie i drugiego gracza do gry. Nie wykonuj akcji w innym wypadku.
      */
-    public void confirm() {
-        send("/confirm");
+    public void confirm(char color) {
+        send("/confirm " + color);
     }
 
     /**
@@ -293,6 +293,14 @@ public class Client implements Runnable {
     public void makeMove(String move) {
         board = move;
         send("X" + board);
+    }
+
+    /**
+     * Wysyła wiadomość o końcu gry i zwycięztwie.
+     * @param winner zwycięzca: jeśli 1 to ty, jeśli 2 to przeciwnik, jeśli 0 to remis
+     */
+    public void whoWin(int winner) {
+        send("E" + winner);
     }
 
     /**
