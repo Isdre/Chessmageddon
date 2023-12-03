@@ -12,7 +12,7 @@ public class ChessBoard {
 
     private Icon holdPiece = null;
 
-    public ChessBoard(JPanel board) {
+    public ChessBoard(JPanel board, char c) {
         if (board == null) return;
         String color;
         String typ;
@@ -26,8 +26,14 @@ public class ChessBoard {
                 b.setPreferredSize(BlockSize);
                 b.setMaximumSize(BlockSize);
                 if ((i <= 1) || (i >= 6)) {
-                    if (i <= 1) color = "White";
-                    else color = "Black";
+                    if (i <= 1) {
+                        if(c=='B') color = "White";
+                        else color = "Black";
+                    }
+                    else {
+                        if(c=='B') color = "Black";
+                        else color = "White";
+                    }
                     if (i == 1 || i == 6) typ = "R";
                     else {
                         if (j == 0 || j == 7) typ = "T";
@@ -42,19 +48,15 @@ public class ChessBoard {
 
                 b.setMargin(buttonMargin);
                 if ((i+j) % 2 == 1) {
-                    b.setBackground(Color.LIGHT_GRAY);
+                    if(c=='B') b.setBackground(Color.LIGHT_GRAY);
+                    else b.setBackground(Color.DARK_GRAY);
                 } else {
-                    b.setBackground(Color.DARK_GRAY);
+                    if(c=='B') b.setBackground(Color.DARK_GRAY);
+                    else b.setBackground(Color.LIGHT_GRAY);
                 }
                 b.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        if (holdPiece == null) {
-                            holdPiece = b.getIcon();
-                            b.setIcon(null);
-                        } else {
-                            b.setIcon(holdPiece);
-                            holdPiece = null;
-                        }
+                        onClickField(b,e);
                     }
                 } );
                 chessBoardSquares[i][j] = b;
@@ -63,5 +65,15 @@ public class ChessBoard {
         }
         board.validate();
         board.repaint();
+    }
+
+    private void onClickField(JButton b, ActionEvent e) {
+        if (holdPiece == null) {
+            holdPiece = b.getIcon();
+            b.setIcon(null);
+        } else {
+            b.setIcon(holdPiece);
+            holdPiece = null;
+        }
     }
 }

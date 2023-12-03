@@ -33,11 +33,15 @@ public class UserWindow extends JFrame implements MyListener {
         } );
         _acceptInv.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                player.confirm('B');
                 System.out.println("Rozpocznij grę");
+                new GameWindow(player,'W');
+                dispose();
             }
         } );
         _rejectInv.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                player.reject();
                 inv.setVisible(false);
                 pack();
             }
@@ -58,6 +62,15 @@ public class UserWindow extends JFrame implements MyListener {
                     inv.setVisible(true);
                     pack();
                     break;
+            case REJECT:
+                System.out.println("Odrzucone zaproszenie");
+                break;
+            case CONFIRM:
+                System.out.println("Aakceptowane zaproszenie");
+                System.out.println(message);
+                new GameWindow(player,'B');
+                dispose();
+                break;
             default: break;
         }
     }
