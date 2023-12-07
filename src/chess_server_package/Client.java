@@ -25,6 +25,9 @@ public class Client implements Runnable {
     private PrintWriter out;
     private  boolean done = false;
     private String board = " "; //-----------------------------------------ustawienie poczatkowe szachow
+    /**
+     * aplikacja słuchająca, implementująca {@link MyListener}
+     */
     public MyListener listener;
     private boolean loggedin;
     private boolean transfer;
@@ -242,6 +245,7 @@ public class Client implements Runnable {
 
     /**
      * Jesli gracz zostal zaproszony, informuje serwer, że przyjmuje zaproszenie tym samym dolaczajac siebie i drugiego gracza do gry. Nie wykonuj akcji w innym wypadku.
+     * @param color kolor
      */
     public void confirm(char color) {
         send("/confirm " + color);
