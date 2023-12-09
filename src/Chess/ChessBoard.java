@@ -109,6 +109,7 @@ public class ChessBoard {
             //JEŚLI SIĘ UDAŁO WYŚLIJ GO
             if (moveTransition.getMoveStatus().isDone()) {
                 //previous.setIcon(null);
+                logicBoard = moveTransition.getToBoard();
                 b.setIcon(holdPiece);
                 previousB.setIcon(null);
                 yourTurn = false;
@@ -155,6 +156,7 @@ public class ChessBoard {
                 BoardUtils.INSTANCE.getCoordinateAtPosition(to)));
 
         if (moveTransition.getMoveStatus().isDone()) {
+            logicBoard = moveTransition.getToBoard();
             b.setIcon(holdPiece);
             previousB.setIcon(null);
         }
