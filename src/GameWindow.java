@@ -10,6 +10,8 @@ public class GameWindow extends JFrame implements MyListener{
     private JPanel Content;
     private JPanel _chat;
     private JPanel _board;
+    private JTextField messenger;
+    private JTextArea textArea;
     private Client player;
     private ChessBoard gameBoardFront;
 
@@ -42,11 +44,15 @@ public class GameWindow extends JFrame implements MyListener{
         switch (type) {
             case MOVE:
                 //System.out.println(message);
-                gameBoardFront.opponentMove(message.substring(0,2),message.substring(2));
+                String x = gameBoardFront.opponentMove(message.substring(0,2),message.substring(2));
+                if(x == "LOST") player.whoWin(2);
+                else if(x== "DRAW") player.whoWin(0);
                 break;
             case OPPONENT_MESSAGE:
+                System.out.println(message);
                 break;
             case GAME_ENDED:
+                System.out.println(message);
                 break;
             default: break;
         }

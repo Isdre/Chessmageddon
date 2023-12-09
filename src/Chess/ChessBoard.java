@@ -122,7 +122,7 @@ public class ChessBoard {
         }
     }
 
-    public void opponentMove(String from, String to) {
+    public String opponentMove(String from, String to) {
         String x1 = from.substring(0,1);
         String y1 = from.substring(1);
         String x2 = to.substring(0,1);
@@ -159,10 +159,14 @@ public class ChessBoard {
             logicBoard = moveTransition.getToBoard();
             b.setIcon(holdPiece);
             previousB.setIcon(null);
+            //SPRAWDŹ CZY KONIEC GRY
+            if (logicBoard.currentPlayer().isInCheckMate()) return "LOST";
+            else if (logicBoard.currentPlayer().isCastled()) return "DRAW";
         }
         previousS = "";
         previousB = null;
         holdPiece = null;
         yourTurn = true;
+        return "InGame";
     }
 }
