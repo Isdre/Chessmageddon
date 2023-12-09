@@ -5,8 +5,10 @@ import chess_server_package.MyListener;
 import com.chess.engine.board.Board;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class GameWindow extends JFrame implements MyListener{
+public class GameWindow extends JFrame implements MyListener, ActionListener {
     private JPanel Content;
     private JPanel _chat;
     private JPanel _board;
@@ -20,6 +22,7 @@ public class GameWindow extends JFrame implements MyListener{
         player = client;
         player.listener = this;
         System.out.println(color);
+        messenger.addActionListener(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         final Board gameBoardEngine = Board.createStandardBoard();
         gameBoardFront = new ChessBoard(_board,color,gameBoardEngine,player);
@@ -49,12 +52,19 @@ public class GameWindow extends JFrame implements MyListener{
                 else if(x== "DRAW") player.whoWin(0);
                 break;
             case OPPONENT_MESSAGE:
-                System.out.println(message);
+                textArea.append(message+"\n");
                 break;
             case GAME_ENDED:
                 System.out.println(message);
                 break;
             default: break;
         }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        textArea.append(player.nick+":"+messenger.getText()+"\n");
+        player.messageOpponent(messenger.getText());
+        messenger.setText("");
     }
 }
