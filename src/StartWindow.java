@@ -20,10 +20,11 @@ public class StartWindow extends JFrame implements ActionListener, MyListener {
     //Sign In
     private JPasswordField _username;
     private JPasswordField _passwordSign;
-    private JCheckBox _remember;
     private JButton _buttonLog;
     private JButton _buttonSign;
     private JLabel TEST_1;
+    private JLabel _loginError;
+    private JLabel _signError;
 
     public StartWindow() {
         super("TEST_2");
@@ -40,9 +41,15 @@ public class StartWindow extends JFrame implements ActionListener, MyListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == _buttonLog){
-            if (!loginPerformed()) return;
+            if (!loginPerformed()) {
+                _loginError.setText("Incorrect login or password");
+                return;
+            }
         } else if (e.getSource() == _buttonSign) {
-            if (!signPerformed()) return;
+            if (!signPerformed()) {
+                _signError.setText("Username and password can't be empty");
+                return;
+            }
         }
         new UserWindow(player);
         dispose();
@@ -58,6 +65,7 @@ public class StartWindow extends JFrame implements ActionListener, MyListener {
 
     public boolean signPerformed() {
         try {
+            if (String.valueOf(_username.getPassword()) == "" || String.valueOf(_passwordSign.getPassword()) == "") return false;
             return  player.register(String.valueOf(_username.getPassword()), String.valueOf(_passwordSign.getPassword()));
         } catch (IOException ex) {
             throw new RuntimeException(ex);
