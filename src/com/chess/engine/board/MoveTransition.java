@@ -2,6 +2,12 @@ package com.chess.engine.board;
 
 import com.chess.engine.board.Move.MoveStatus;
 
+/**
+ *
+ * Klasa trzymająca kompletny zapis ruchu (razem z początkowym i końcowym stanem planszy oraz z legalnością ruchu
+ *
+ */
+
 public final class MoveTransition {
 
     private final Board fromBoard;

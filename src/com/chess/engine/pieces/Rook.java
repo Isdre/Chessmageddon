@@ -10,6 +10,12 @@ import com.chess.engine.board.MoveUtils;
 
 import java.util.*;
 
+/**
+ *
+ * Wieża
+ *
+ */
+
 public final class Rook extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = { -8, -1, 1, 8 };

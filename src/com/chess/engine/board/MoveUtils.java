@@ -5,6 +5,12 @@ import java.util.List;
 
 import static com.chess.engine.board.Move.*;
 
+/**
+ *
+ * Utilsy ruchu
+ *
+ */
+
 public enum MoveUtils {
 
     INSTANCE;
@@ -20,7 +26,11 @@ public enum MoveUtils {
                 exchangeScore(move.getBoard().getTransitionMove());
 
     }
-
+    /**
+     *
+     * Linia
+     *
+     */
     public static class Line {
         private final List<Integer> coordinates;
 

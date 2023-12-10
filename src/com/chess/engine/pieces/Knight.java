@@ -9,6 +9,12 @@ import com.chess.engine.board.Move.MajorMove;
 
 import java.util.*;
 
+/**
+ *
+ * Skoczek
+ *
+ */
+
 public final class Knight extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = { -17, -15, -10, -6, 6, 10, 15, 17 };

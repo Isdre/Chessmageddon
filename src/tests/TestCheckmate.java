@@ -11,6 +11,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
+/**
+ *
+ * Test na szach-mat
+ *
+ */
+
 public class TestCheckmate {
 
     @Test

@@ -5,6 +5,12 @@ import com.chess.engine.player.BlackPlayer;
 import com.chess.engine.player.Player;
 import com.chess.engine.player.WhitePlayer;
 
+/**
+ *
+ * Kolor gracza
+ *
+ */
+
 public enum Alliance {
 
     WHITE() {

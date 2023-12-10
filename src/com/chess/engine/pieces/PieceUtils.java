@@ -5,6 +5,12 @@ import com.chess.engine.board.BoardUtils;
 import com.google.common.collect.ImmutableTable;
 import com.google.common.collect.Table;
 
+/**
+ *
+ * Utilsy bierek
+ *
+ */
+
 enum PieceUtils {
 
     INSTANCE;

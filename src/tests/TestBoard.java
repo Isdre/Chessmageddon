@@ -12,6 +12,12 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.*;
 
+/**
+ *
+ * Test planszy
+ *
+ */
+
 public class TestBoard {
 
     @Test

@@ -10,6 +10,12 @@ import com.chess.engine.board.MoveUtils;
 
 import java.util.*;
 
+/**
+ *
+ * Hetman
+ *
+ */
+
 public final class Queen extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = { -9, -8, -7, -1, 1,

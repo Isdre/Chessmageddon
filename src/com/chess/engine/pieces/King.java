@@ -9,6 +9,12 @@ import com.chess.engine.board.Move.MajorMove;
 
 import java.util.*;
 
+/**
+ *
+ * Król
+ *
+ */
+
 public final class King extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = { -9, -8, -7, -1, 1, 7, 8, 9 };

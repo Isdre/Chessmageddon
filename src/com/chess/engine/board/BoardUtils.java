@@ -7,6 +7,12 @@ import java.util.*;
 
 import static com.chess.engine.board.Move.MoveFactory;
 
+/**
+ *
+ * Utilsy planszy
+ *
+ */
+
 public enum  BoardUtils {
 
     INSTANCE;

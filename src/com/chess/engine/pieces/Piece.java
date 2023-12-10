@@ -6,6 +6,12 @@ import com.chess.engine.board.Move;
 
 import java.util.Collection;
 
+/**
+ *
+ * Klasa po której dziedziczą wszystkie bierki
+ *
+ */
+
 public abstract class Piece {
 
     final PieceType pieceType;
@@ -77,7 +83,11 @@ public abstract class Piece {
         result = 31 * result + (this.isFirstMove ? 1 : 0);
         return result;
     }
-
+    /**
+     *
+     * Typy bierek i ich wartości do przyszłej implementacji algorytmów (może)
+     *
+     */
     public enum PieceType {
 
         PAWN(100, "P"),

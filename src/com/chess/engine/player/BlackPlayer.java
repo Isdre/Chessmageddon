@@ -16,6 +16,12 @@ import java.util.List;
 
 import static com.chess.engine.pieces.Piece.PieceType.ROOK;
 
+/**
+ *
+ * Gracz czarny
+ *
+ */
+
 public final class BlackPlayer extends Player {
 
     public BlackPlayer(final Board board,

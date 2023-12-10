@@ -7,6 +7,12 @@ import com.chess.engine.pieces.Rook;
 
 import java.util.Objects;
 
+/**
+ *
+ * Ruch (plansza, miejsce końcowe, nazwa bierki i czy jest to jej pierwszy ruch - ma znaczenie przy legalności roszady bądź ruchu pionka o 2 pola)
+ *
+ */
+
 public abstract class Move {
 
     protected final Board board;
@@ -109,7 +115,11 @@ public abstract class Move {
         }
         return "";
     }
-
+    /**
+     *
+     * Status legalności ruchu (posiada metodę typu bool)
+     *
+     */
     public enum MoveStatus {
 
         DONE {
@@ -134,6 +144,11 @@ public abstract class Move {
         public abstract boolean isDone();
 
     }
+    /**
+     *
+     * Ruch pionka który staje się ruchem promującym na ostatniej linii
+     *
+     */
 
     public static class PawnPromotion
             extends PawnMove {
@@ -193,7 +208,11 @@ public abstract class Move {
         }
 
     }
-
+    /**
+     *
+     * "Duży" ruch
+     *
+     */
     public static class MajorMove
             extends Move {
 
@@ -215,7 +234,11 @@ public abstract class Move {
         }
 
     }
-
+    /**
+     *
+     * "Duży" ruch (atakujący)
+     *
+     */
     public static class MajorAttackMove
             extends AttackMove {
 
@@ -239,7 +262,11 @@ public abstract class Move {
         }
 
     }
-
+    /**
+     *
+     * Ruch pionka
+     *
+     */
     public static class PawnMove
             extends Move {
 
@@ -260,7 +287,11 @@ public abstract class Move {
         }
 
     }
-
+    /**
+     *
+     * Ruch pionka (atakujący)
+     *
+     */
     public static class PawnAttackMove
             extends AttackMove {
 
@@ -283,7 +314,11 @@ public abstract class Move {
         }
 
     }
-
+    /**
+     *
+     * Ruch pionka (bicie w przelocie)
+     *
+     */
     public static class PawnEnPassantAttack extends PawnAttackMove {
 
         public PawnEnPassantAttack(final Board board,
@@ -319,7 +354,11 @@ public abstract class Move {
         }
 
     }
-
+    /**
+     *
+     * Ruch pionka (skok)
+     *
+     */
     public static class PawnJump
             extends Move {
 
@@ -353,7 +392,11 @@ public abstract class Move {
         }
 
     }
-
+    /**
+     *
+     * Roszada
+     *
+     */
     static abstract class CastleMove
             extends Move {
 
@@ -420,7 +463,11 @@ public abstract class Move {
         }
 
     }
-
+    /**
+     *
+     * Krótka roszada
+     *
+     */
     public static class KingSideCastleMove
             extends CastleMove {
 
@@ -452,7 +499,11 @@ public abstract class Move {
         }
 
     }
-
+    /**
+     *
+     * Długa roszada
+     *
+     */
     public static class QueenSideCastleMove
             extends CastleMove {
 
@@ -484,7 +535,11 @@ public abstract class Move {
         }
 
     }
-
+    /**
+     *
+     * Ruch (atakujący)
+     *
+     */
     static abstract class AttackMove
             extends Move {
 
@@ -526,7 +581,11 @@ public abstract class Move {
         }
 
     }
-
+    /**
+     *
+     * Ruch (a raczej jego brak)
+     *
+     */
     static class NullMove
             extends Move {
 
@@ -554,7 +613,11 @@ public abstract class Move {
             return "Null Move";
         }
     }
-
+    /**
+     *
+     * Faktoria ruchów
+     *
+     */
     public static class MoveFactory {
 
         private MoveFactory() {

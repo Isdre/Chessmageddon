@@ -10,6 +10,12 @@ import com.chess.engine.board.MoveUtils;
 
 import java.util.*;
 
+/**
+ *
+ * Goniec
+ *
+ */
+
 public final class Bishop extends Piece {
 
     private final static int[] CANDIDATE_MOVE_COORDINATES = {-9, -7, 7, 9};

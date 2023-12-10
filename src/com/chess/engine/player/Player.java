@@ -16,6 +16,12 @@ import static com.chess.engine.board.MoveUtils.NULL_MOVE;
 import static com.chess.engine.pieces.Piece.PieceType.KING;
 import static java.util.stream.Collectors.collectingAndThen;
 
+/**
+ *
+ * Klasa gracz
+ *
+ */
+
 public abstract class Player {
 
     protected final Board board;

@@ -15,6 +15,12 @@ import com.chess.engine.pieces.Bishop;
 import com.chess.engine.pieces.King;
 import com.chess.engine.pieces.Pawn;
 
+/**
+ *
+ * Test na pata
+ *
+ */
+
 public class TestStalemate {
     @Test
     public void testAnandKramnikStaleMate() {

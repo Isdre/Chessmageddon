@@ -16,6 +16,11 @@ import java.util.List;
 
 import static com.chess.engine.pieces.Piece.PieceType.ROOK;
 
+/**
+ *
+ * Gracz biały
+ *
+ */
 public final class WhitePlayer extends Player {
 
     public WhitePlayer(final Board board,

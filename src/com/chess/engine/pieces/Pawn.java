@@ -11,6 +11,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ *
+ * Pionek
+ *
+ */
+
 public final class Pawn
         extends Piece {
 

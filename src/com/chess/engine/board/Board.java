@@ -14,6 +14,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ *
+ * Plansza (ułożenie bierek, gracze, aktualny gracz, pionek w przelocie i ruch)
+ *
+ */
+
 public final class Board {
 
     private final Map<Integer, Piece> boardConfig;
@@ -160,7 +166,11 @@ public final class Board {
                 .filter(piece -> piece.getPieceAllegiance() == alliance)
                 .collect(Collectors.toList());
     }
-
+    /**
+     *
+     * Klasa budująca (ułożenie bierek, który gracz wykonuje ruch, pion w przelocie, ruch)
+     *
+     */
     public static class Builder {
 
         Map<Integer, Piece> boardConfig;
