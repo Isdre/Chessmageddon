@@ -122,7 +122,7 @@ public class ChessBoard {
         }
     }
 
-    /*
+    /**
     * Wykonanie ruchu przeciwnika
     * @return "InGame", "DRAW", "LOST" zależnie od skutku ruchu
      */
