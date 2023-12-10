@@ -54,6 +54,10 @@ public class UserWindow extends JFrame implements MyListener {
         setVisible(true);
     }
 
+    /**
+     * Odpowiada za przyjmowanie wiadomości z serwera
+     * Przyjmownaie/odpowiadanie na zaproszenia
+     */
     @Override
     public void performed(String message, MessType type) {
         switch (type) {

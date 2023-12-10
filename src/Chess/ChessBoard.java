@@ -122,6 +122,10 @@ public class ChessBoard {
         }
     }
 
+    /*
+    * Wykonanie ruchu przeciwnika
+    * @return "InGame", "DRAW", "LOST" zależnie od skutku ruchu
+     */
     public String opponentMove(String from, String to) {
         String x1 = from.substring(0,1);
         String y1 = from.substring(1);

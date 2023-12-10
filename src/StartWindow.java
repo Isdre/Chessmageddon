@@ -7,7 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-
+/**
+ * Okno logowania
+ */
 public class StartWindow extends JFrame implements ActionListener, MyListener {
     private Client player;
     private JPanel Background;
@@ -39,6 +41,10 @@ public class StartWindow extends JFrame implements ActionListener, MyListener {
         t.start();
     }
 
+    /**
+     * Wykonuje się, gdy użytkownik spróbuje się zalogować lub zarejestrować
+     * Wyświetla komunikat błędu dla logowania oraz rejestracji
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == _buttonLog){
             if (!loginPerformed()) {
@@ -55,6 +61,10 @@ public class StartWindow extends JFrame implements ActionListener, MyListener {
         dispose();
     }
 
+    /**
+     * Logowanie gracza
+     * @return czy się powiodło
+     */
     public boolean loginPerformed() {
         try {
             return  player.login(String.valueOf(_login.getPassword()), String.valueOf(_passwordLog.getPassword()));
@@ -63,6 +73,10 @@ public class StartWindow extends JFrame implements ActionListener, MyListener {
         }
     }
 
+    /**
+     * Rejestracja gracza
+     * @return czy się powiodło
+     */
     public boolean signPerformed() {
         try {
             if (String.valueOf(_username.getPassword()) == "" || String.valueOf(_passwordSign.getPassword()) == "") return false;
