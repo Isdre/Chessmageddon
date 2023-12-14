@@ -182,18 +182,26 @@ public class DataBaseConnection {
                     "\t\tcurrent_date(),\n" +
                     "        (SELECT playerid FROM ChessServer.playerdata WHERE name = '"+player1+"'),\n" +
                     "\t\t(SELECT playerid FROM ChessServer.playerdata WHERE name = '"+player2+"'),\n" +
-                    "        CAST('"+winner+"'AS INTEGER));\n" +
-                    "INSERT INTO ChessServer.gamedata\n" +
+                    ""+winner+");\n");
+            pr.execute();
+            pr = database.prepareStatement("INSERT INTO ChessServer.gamedata\n" +
                     "(gameid, gamedate, player1id, player2id, winner)\n" +
                     "VALUES ((SELECT MAX(gameid)+1 FROM ChessServer.gamedata tmp), \n" +
                     "\t\tcurrent_date(),\n" +
                     "        (SELECT playerid FROM ChessServer.playerdata WHERE name = '"+player2+"'),\n" +
                     "\t\t(SELECT playerid FROM ChessServer.playerdata WHERE name = '"+player1+"'),\n" +
-                    "        CAST('"+looser+"' AS INTEGER));");
+                    ""+looser+");");
             pr.execute();
         } catch (Exception e) {
-            System.out.println("Dodawanie gier do bazy");
+            System.out.println("Error Dodawanie gier do bazy");
+            System.out.println(e.getMessage());
         }
 
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        DataBaseConnection d = new DataBaseConnection();
+        Thread.sleep(1000);
+        d.addGame("Kuba", "Gilbert", 2);
     }
 }
