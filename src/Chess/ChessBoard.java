@@ -165,7 +165,7 @@ public class ChessBoard {
             previousB.setIcon(null);
             //SPRAWDŹ CZY KONIEC GRY
             if (logicBoard.currentPlayer().isInCheckMate()) return "LOST";
-            else if (logicBoard.currentPlayer().isCastled()) return "DRAW";
+            else if (logicBoard.currentPlayer().isInStaleMate()) return "DRAW";
         }
         previousS = "";
         previousB = null;
