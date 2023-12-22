@@ -63,14 +63,38 @@ public class GameWindow extends JFrame implements MyListener, ActionListener {
             case MOVE:
                 //System.out.println(message);
                 String x = gameBoardFront.opponentMove(message.substring(0,2),message.substring(2));
-                if(x == "LOST") player.whoWin(2);
-                else if(x== "DRAW") player.whoWin(0);
+                if(x == "LOST") {
+                    player.whoWin(2);
+                }
+                else if(x== "DRAW") {
+                    player.whoWin(0);
+                }
                 break;
             case OPPONENT_MESSAGE:
                 textArea.append(message+"\n");
                 break;
             case GAME_ENDED:
                 System.out.println(message);
+                JDialog jd = new JDialog();
+                jd.getContentPane().setLayout(new GridBagLayout());
+                String end_mess = "KONIEC! ";
+                if (message == player.nick) end_mess += "WYGRAŁEŚ";
+                //else if (message == "WIADOMOŚĆ REMISU") end_mess += "REMIS";
+                else end_mess += "PRZEGRAŁEŚ";
+                jd.getContentPane().add(new JLabel(end_mess));
+                JButton end = new JButton();
+                end.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        new UserWindow(player);
+                        jd.dispose();
+                        dispose();
+                    }
+                } );
+                jd.add(end);
+                jd.pack();
+
+                jd.setLocationRelativeTo(Content);
+                jd.setVisible(true);
                 break;
             default: break;
         }
