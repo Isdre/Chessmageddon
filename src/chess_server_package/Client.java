@@ -21,8 +21,8 @@ import java.util.Objects;
  */
 public class Client implements Runnable {
     private Socket client;
-    private BufferedReader in;
-    private PrintWriter out;
+    public BufferedReader in;
+    public PrintWriter out;
     private  boolean done = false;
     private String board = " "; //-----------------------------------------ustawienie poczatkowe szachow
     /**

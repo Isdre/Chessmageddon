@@ -13,11 +13,11 @@ import java.sql.*;
  * Klasa serwer obsługuje stawianie serwera, komunikację z użytkownikiem, tworzenie oraz łączenie użytkowników w grach.
  */
 public class Server implements Runnable {
-    private final ArrayList<ConnectionHandler> connections;
-    private ServerSocket server;
+    public final ArrayList<ConnectionHandler> connections;
+    public ServerSocket server;
     private boolean done;
     private ExecutorService pool;
-    private final ArrayList<Game> games = new ArrayList<>();
+    public final ArrayList<Game> games = new ArrayList<>();
     private DataBaseConnection database;
 
     /**
@@ -49,13 +49,18 @@ public class Server implements Runnable {
         }
     }
     private void broadcast(String message) {
-        for(ConnectionHandler ch : connections) {
-            if(ch != null) {
-                ch.systemMessage(message);
+        try {
+            for(ConnectionHandler ch : connections) {
+                if(ch != null) {
+                    ch.systemMessage(message);
+                }
             }
+        } catch (Exception e) {
+            //S
         }
+
     }
-    private void shutdown() {
+    public void shutdown() {
         try {
             done = true;
             if(!server.isClosed()) {
@@ -64,8 +69,8 @@ public class Server implements Runnable {
             for(ConnectionHandler ch : connections) {
                 ch.shutdown();
             }
-        } catch(IOException e) {
-            System.out.println(e.getMessage());
+        } catch(Exception e) {
+//            System.out.println(e.getMessage());
         }
     }
 

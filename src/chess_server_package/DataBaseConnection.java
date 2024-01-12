@@ -6,7 +6,7 @@ import java.sql.*;
  * Klasa DataBaseConnection obsługuje połączenie z bazą danych oraz pobieranie i konwertowanie z niej wartości.
  */
 public class DataBaseConnection {
-    Connection database;
+    public Connection database;
     /**
      * Tworzy obiekt DataBaseConnection.
      */
