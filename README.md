@@ -8,6 +8,11 @@ Projekt w całości napisany jest w języku Java wykorzystujący, między innymi
 
 ---
 
+## Dokumetacja użytkownika ...? 
+*Jak używać*
+
+---
+
 ## Instalacja aplikacji
 *Instrukcja instalacji*
 
@@ -19,3 +24,6 @@ Projekt w całości napisany jest w języku Java wykorzystujący, między innymi
 * *Pamiętać o zainstalowaniu mysql* 
 * *i zaimportowaiu odpowiedniej bazy, którą trzeba dodać do projektu* 
 * *i o dobrym kanale tej bazy*
+* *i instrukcji odpalenia wszystkiego w kolejności*
+* *Do przemyślenia gdzie dać dokumentację i diagramy ( może jakieś linki tutaj? )*
+* *I co z testami no bo ani serwer ani klient w teorii nie powinni ich mieć a dobrze by było gdyby gość mógł sobie je sprawdzić*
