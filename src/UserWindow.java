@@ -21,7 +21,7 @@ public class UserWindow extends JFrame implements MyListener {
     private JPanel onlinePlayers;
 
     public UserWindow(Client client){
-        super("TEST_2");
+        super("Chessmageddon");
         player = client;
         player.listener = this;
         UserInterface.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED,Color.BLACK,Color.BLACK), player.nick));

@@ -24,12 +24,12 @@ public class StartWindow extends JFrame implements ActionListener, MyListener {
     private JPasswordField _passwordSign;
     private JButton _buttonLog;
     private JButton _buttonSign;
-    private JLabel TEST_1;
+    private JLabel label;
     private JLabel _loginError;
     private JLabel _signError;
 
     public StartWindow() {
-        super("TEST_2");
+        super("Chessmageddon");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(Start);
         setSize(600,400);

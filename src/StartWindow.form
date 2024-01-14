@@ -21,14 +21,14 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="1535" class="javax.swing.JLabel" binding="TEST_1">
+          <component id="1535" class="javax.swing.JLabel" binding="label">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <text value="Label"/>
+              <text value="Chessmageddon"/>
             </properties>
           </component>
           <grid id="7d656" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
