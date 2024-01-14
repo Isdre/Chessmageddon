@@ -11,7 +11,7 @@ Projekt w całości napisany jest w języku Java wykorzystujący, między innymi
 ## Instalacja aplikacji
  * Należy pobrać i rozpakować plik Game.zip
  * Utwórz skrót do pliku src/Main.java
- * Umieść skót na pulpicie
+ * Umieść skrót na pulpicie
 
 ---
 
