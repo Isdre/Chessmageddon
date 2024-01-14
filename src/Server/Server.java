@@ -1,13 +1,11 @@
-package chess_server_package;
+package Server;
 
 import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.sql.*;
 
 /**
  * Klasa serwer obsługuje stawianie serwera, komunikację z użytkownikiem, tworzenie oraz łączenie użytkowników w grach.
@@ -21,7 +19,7 @@ public class Server implements Runnable {
     private DataBaseConnection database;
 
     /**
-     * tworzy obiekt klasy chess_server_package.Server.
+     * tworzy obiekt klasy Server.Server.
      */
     public Server() {
         connections = new ArrayList<>();
@@ -37,7 +35,7 @@ public class Server implements Runnable {
             database = new DataBaseConnection();
             server = new ServerSocket(9999);
             pool = Executors.newCachedThreadPool();
-            System.out.println("chess_server_package.Server is running");
+            System.out.println("Server.Server is running");
             while(!done) {
                 Socket client = server.accept();
                 ConnectionHandler handler = new ConnectionHandler(client);
@@ -56,7 +54,7 @@ public class Server implements Runnable {
                 }
             }
         } catch (Exception e) {
-            //S
+
         }
 
     }
@@ -70,7 +68,7 @@ public class Server implements Runnable {
                 ch.shutdown();
             }
         } catch(Exception e) {
-//            System.out.println(e.getMessage());
+
         }
     }
 
@@ -199,24 +197,6 @@ public class Server implements Runnable {
         }
 
 
-//        /**
-//         * Obsługuje zmianę hasła.
-//         * @param newPassword nowe hasło
-//         */
-//        public void changePassword(String newPassword) {
-//            return;
-//            //TOD changePassword
-//        }
-//
-//        /**
-//         * Obsługuje zmianę nazwy.
-//         * @param newName nowa nazwa
-//         */
-//        public void changeName(String newName) {
-//            return;
-//            //TOD changeName
-//        }
-
         /**
          * uruchamia ConnectionHanler-a.
          */
@@ -241,28 +221,6 @@ public class Server implements Runnable {
                     else {
                         inGame(message);
                     }
-//                    if(message.startsWith("/nick")) {
-//                        String[] messageSplit = message.split(" ", 2);
-//                        if(messageSplit.length == 2) {
-//                            System.out.println("SERVER: " + nickname + " changed nickname to " + messageSplit[1]);
-//                            out.println("SERVER: Successfully changed nickname to: " + messageSplit[1]);
-//                            broadcast("SERVER: " + nickname + " changed nickname to " + messageSplit[1]);
-//                            nickname = messageSplit[1];
-//                        }
-//                        else {
-//                            out.println("SERVER: No nickname provided.");
-//                        }
-//                    }
-//                    else if(message.startsWith("/quit")) {
-//                        String leftName = nickname;
-//                        broadcast("SERVER: " + nickname + " left");
-//                        shutdown();
-//                        System.out.println("SERVER: " + leftName + " left.    Online: " + connections.size());
-//                        break;
-//                    }
-//                    else {
-//                        broadcast(nickname + ": " + message);
-//                    }
                 }
             } catch(IOException e) {
                 shutdown();
@@ -349,7 +307,6 @@ public class Server implements Runnable {
             tmp.players[0].game = null;
             tmp.players[1].systemMessage("endOfGame");
             tmp.players[1].game = null;
-            // Server.this.games.remove(this);
         }
 
         /**
@@ -443,7 +400,7 @@ public class Server implements Runnable {
                 systemMessage("In game with: " + game.players[1].nickname);
                 ch.systemMessage("In game with: " + game.players[0].nickname);
                 ch.confirmMessage(color + inviter);
-                games.add(game); //na koniec if-a
+                games.add(game);
             }
         }
 

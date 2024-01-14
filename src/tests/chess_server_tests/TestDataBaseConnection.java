@@ -2,7 +2,7 @@ package tests.chess_server_tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import chess_server_package.*;
+import Server.DataBaseConnection;
 
 class TestDataBaseConnection {
     @org.junit.jupiter.api.Test

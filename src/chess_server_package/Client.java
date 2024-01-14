@@ -6,25 +6,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-// TODO: other
-//uncomment message receivers,
-// uncomment main,
-// ustawienie początkowe szachów
-
 /**
  * Klasa chess_server_package.Client obsługuje połączenie z serverem, wysyłanie i otrzymywanie wiadomości
  * Zainicjuj obiekt "chess_server_package.Client(MESSAGE_RECEIVER)" oraz wykonaj metode {@link #run()}.
  * "MESSAGE_RECEIVER" to twoj obiekt odbierajacy wiadomosci. Musi implementować {@link MyListener}
  * i zawierac {@link MyListener#performed(String, MessType)} ktory przujmuje wiadomosc i jej typ.
  * Zobacz rowniez: {@link MessType}.
- * Przykladowe uzycie: {@link Test}
  */
 public class Client implements Runnable {
     private Socket client;
     public BufferedReader in;
     public PrintWriter out;
     private  boolean done = false;
-    private String board = " "; //-----------------------------------------ustawienie poczatkowe szachow
+    private String board = " "; 
     /**
      * aplikacja słuchająca, implementująca {@link MyListener}
      */
@@ -61,7 +55,7 @@ public class Client implements Runnable {
                 client.close();
             }
         } catch (IOException e) {
-            //ignore
+            
         }
     }
 
@@ -189,7 +183,7 @@ public class Client implements Runnable {
      * @param message wiadomosc
      */
     private void receiveSystemMessage(String message) {
-//        System.out.println("System: " + message);
+
         listener.performed(message, MessType.SYSTEM_MESSAGE);
     }
 
@@ -198,7 +192,7 @@ public class Client implements Runnable {
      * @param message wiadomosc
      */
     private void receiveOpponentsMessage(String message) {
-//        System.out.println("Message: " + message);
+
         listener.performed(message, MessType.OPPONENT_MESSAGE);
     }
 
@@ -208,7 +202,7 @@ public class Client implements Runnable {
      */
     private void receiveMove(String move) {
         board = move;
-//        System.out.println("Move: " + board);
+
         listener.performed(board, MessType.MOVE);
 
     }

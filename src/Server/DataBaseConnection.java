@@ -1,4 +1,4 @@
-package chess_server_package;
+package Server;
 
 import java.sql.*;
 

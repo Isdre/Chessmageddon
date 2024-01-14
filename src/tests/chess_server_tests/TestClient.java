@@ -1,5 +1,6 @@
 package tests.chess_server_tests;
 
+import Server.Server;
 import chess_server_package.*;
 import org.junit.jupiter.api.Test;
 
