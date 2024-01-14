@@ -8,15 +8,10 @@ Projekt w całości napisany jest w języku Java wykorzystujący, między innymi
 
 ---
 
-## Dokumetacja użytkownika ...? 
-*Jak używać*
-
----
-
 ## Instalacja aplikacji
-*Instrukcja instalacji*
-
-[link do instalacji](https://www.youtube.com/watch?v=dQw4w9WgXcQ) ( *a tak na prawdę to Rick Roll* )
+ * Należy pobrać i rozpakować plik Game.zip
+ * Utwórz skrót do pliku src/Main.java
+ * Umieść skót na pulpicie
 
 ---
 
