@@ -17,6 +17,7 @@ public class ChessBoard {
     private JButton[][] chessBoardSquares = new JButton[8][8];
     private String previousS;
     private JButton previousB;
+    private Color previousC;
     private Board logicBoard;
     private Dimension BlockSize = new Dimension(60,60);
     private char playerColor;
@@ -94,9 +95,12 @@ public class ChessBoard {
         if(previousS == ""){
             previousS = b.getName();
             previousB = b;
+            previousC = b.getBackground();
+            b.setBackground(Color.ORANGE);
             //System.out.println(previous);
             holdPiece = b.getIcon();
-        } else {
+        }
+        else {
             //WEŹ WSPÓŁRZĘDNE
             String y1 = previousS.substring(0,1);
             String x1 = cordsC[Integer.parseInt(previousS.substring(1))-1];
@@ -117,7 +121,9 @@ public class ChessBoard {
                 _player.makeMove(x1+y1+x2+y2);
             }
             previousS = "";
+            previousB.setBackground(previousC);
             previousB = null;
+            previousC = null;
             holdPiece = null;
         }
     }
