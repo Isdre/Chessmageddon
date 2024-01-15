@@ -329,15 +329,19 @@ public class Client implements Runnable {
      * Kolumny: liczba gier, liczba wygranych, liczba przegranych, liczba remisów, data utworzenia konta.
      * @return lista statystyk gracza.
      */
-    public ArrayList<String> getPlayerStatistics() {
+    public ArrayList<ArrayList<String>> getPlayerStatistics() {
         send("/getPlayerStats");
         while(!transfer) {
             System.out.print("");
         }
         transfer=false;
-        String[] tmp = messageContainer.substring(1).split(",");
-        ArrayList<String> stats = new ArrayList<>();
-        stats.addAll(Arrays.asList(tmp));
+        String[] tmp = messageContainer.substring(1).split("/");
+        ArrayList<ArrayList<String>> stats = new ArrayList<>();
+        for(String i : tmp) {
+            ArrayList<String> tmp2 = new ArrayList<>();
+            tmp2.addAll(Arrays.asList(i.split(",")));
+            stats.add(tmp2);
+        }
         return stats;
     }
 

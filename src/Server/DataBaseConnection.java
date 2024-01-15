@@ -12,8 +12,8 @@ public class DataBaseConnection {
      */
     public DataBaseConnection() {
         try {
-            //database = DriverManager.getConnection("jdbc:mysql://localhost:3306/ChessServer", "root", "");
-            database = DriverManager.getConnection("jdbc:mysql://localhost:3306/chessapp", "root", "");
+            database = DriverManager.getConnection("jdbc:mysql://localhost:3306/ChessServer", "root", "");
+            //database = DriverManager.getConnection("jdbc:mysql://localhost:3306/chessapp", "root", "");
         } catch(Exception e) {
             System.out.println("database connection failed");
         }
@@ -120,6 +120,7 @@ public class DataBaseConnection {
                         + "," + res.getString("winproportion")
                         + "/";
             }
+            tmp = "player,gamecount,wincount,loosecount,drawcount,winproportion/" + tmp;
             return tmp;
         } catch(Exception e) {
             System.out.println("failed getAllStats");
@@ -154,6 +155,7 @@ public class DataBaseConnection {
                         + "," + res.getString("drawcount")
                         + "," + res.getString("winproportion");
             }
+            tmp = "player,gamecount,wincount,loosecount,drawcount,winproportion/" + tmp;
             return tmp;
         } catch (Exception e) {
             System.out.println("failed getPStats");

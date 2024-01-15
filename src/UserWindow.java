@@ -21,6 +21,9 @@ public class UserWindow extends JFrame implements MyListener {
     private JButton _rejectInv;
     private JLabel _nickInv;
     private JPanel stats;
+    private JButton GetPlayerGames;
+    private JButton GetPlayerStatistics;
+    private JButton getAllPlayersStatistics;
 
     public UserWindow(Client client){
         super("Chessmageddon");
@@ -51,6 +54,30 @@ public class UserWindow extends JFrame implements MyListener {
                 pack();
             }
         } );
+        GetPlayerGames.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Stats s = new Stats(player.getPlayerGames());
+                Thread t = new Thread(s);
+                t.start();
+            }
+        });
+        GetPlayerStatistics.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Stats s = new Stats(player.getPlayerStatistics());
+                Thread t = new Thread(s);
+                t.start();
+            }
+        });
+        getAllPlayersStatistics.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Stats s = new Stats(player.getAllPlayersStatistics());
+                Thread t = new Thread(s);
+                t.start();
+            }
+        });
         //getPlayerStatistics lub getPlayerGames()
 
         System.out.println(player.getPlayerGames());
