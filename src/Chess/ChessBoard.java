@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class ChessBoard {
     private JPanel board;
@@ -64,7 +65,7 @@ public class ChessBoard {
                         else if ((j == 3)) typ = "Q";
                         else typ = "King";
                     }
-                    Icon image = new ImageIcon("images/Chess_Pieces/" + color + "_" + typ + ".png");
+                    Icon image = new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/Chess/images/Chess_Pieces/" + color + "_" + typ + ".png")));
                     b.setIcon(image);
                 }
                 b.setMargin(buttonMargin);
