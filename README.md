@@ -9,9 +9,8 @@ Projekt w całości napisany jest w języku Java wykorzystujący, między innymi
 ---
 
 ## Instalacja aplikacji
- * Należy pobrać i rozpakować plik Game.zip
- * Utwórz skrót do pliku src/Main.java
- * Umieść skrót na pulpicie
+ * Zainstalowanie Java w wersji 17 lub nowszej
+ * Pobranie pliku Chessmageddon.jar z folderu repozytorium out/artifacts/Chessmageddon_jar
 
 ---
 
