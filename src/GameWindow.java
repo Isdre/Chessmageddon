@@ -86,44 +86,20 @@ public class GameWindow extends JFrame implements MyListener, ActionListener {
                 System.out.println(message);
                 //Komunikat końca meczu
                 JDialog jd = new JDialog();
-                jd.addWindowListener(new WindowListener() {
+                jd.addWindowListener(new WindowAdapter() {
                     @Override
-                    public void windowOpened(WindowEvent e) {
-
+                    public void windowClosed(WindowEvent e) {
+                        new UserWindow(player);
+                        dispose();
+                        instance.dispose();
+                        super.windowClosed(e);
                     }
-
                     @Override
                     public void windowClosing(WindowEvent e) {
                         new UserWindow(player);
                         dispose();
                         instance.dispose();
-                    }
-
-                    @Override
-                    public void windowClosed(WindowEvent e) {
-                        new UserWindow(player);
-                        jd.dispose();
-                        dispose();
-                    }
-
-                    @Override
-                    public void windowIconified(WindowEvent e) {
-
-                    }
-
-                    @Override
-                    public void windowDeiconified(WindowEvent e) {
-
-                    }
-
-                    @Override
-                    public void windowActivated(WindowEvent e) {
-
-                    }
-
-                    @Override
-                    public void windowDeactivated(WindowEvent e) {
-
+                        super.windowClosed(e);
                     }
                 });
                 jd.setPreferredSize(new Dimension(100, 80));
@@ -138,7 +114,7 @@ public class GameWindow extends JFrame implements MyListener, ActionListener {
                 JButton end = new JButton();
                 end.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        new UserWindow(player);
+//                        new UserWindow(player);
                         jd.dispose();
                         dispose();
                     }
