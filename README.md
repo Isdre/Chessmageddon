@@ -25,11 +25,12 @@ Projekt w całości napisany jest w języku Java wykorzystujący, między innymi
 ---
 
 ## Dokumentacja techniczna i użytownika
-Dokumentację umieszczamy w chmurze. Można ją pobrać z tego linku: [Dokumentacja](link)
+Dokumentację umieszczamy w chmurze. Można ją pobrać z tego linku: [Dokumentacja]([link](https://drive.google.com/drive/folders/1jNw_qbgocLBruFItsxFw_-JkBM3K9EvW?usp=sharing))
 
 ---
 
 ## Licencja
+Projekt na licencji BSD 2-Clause "Simplified"
 [Zobacz licencję](https://github.com/Isdre/Chessmageddon/blob/master/LICENSE)
 
 ## Testy
