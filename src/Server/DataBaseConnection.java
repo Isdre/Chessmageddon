@@ -86,6 +86,7 @@ public class DataBaseConnection {
                         + "," + res.getString("winner")
                         + "/";
             }
+            tmp = "gamedate,opponent,winner/" + tmp;
             return tmp;
 
         } catch(Exception e) {

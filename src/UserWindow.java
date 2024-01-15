@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class UserWindow extends JFrame implements MyListener {
     private Client player;
@@ -24,6 +26,7 @@ public class UserWindow extends JFrame implements MyListener {
     private JButton GetPlayerGames;
     private JButton GetPlayerStatistics;
     private JButton getAllPlayersStatistics;
+    private JButton ActivePlayers;
 
     public UserWindow(Client client){
         super("Chessmageddon");
@@ -78,9 +81,26 @@ public class UserWindow extends JFrame implements MyListener {
                 t.start();
             }
         });
+        ActivePlayers.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<ArrayList<String>> arr = new ArrayList<>();
+                ArrayList<String> tmp = new ArrayList<>();
+                tmp.add("GRACZE ONLINE");
+                arr.add(tmp);
+                for(String s : player.playersOnline()) {
+                    ArrayList<String> tmp1 = new ArrayList<>();
+                    tmp1.add(s);
+                    arr.add(tmp1);
+                }
+                Stats s = new Stats(arr);
+                Thread t = new Thread(s);
+                t.start();
+            }
+        });
         //getPlayerStatistics lub getPlayerGames()
 
-        System.out.println(player.getPlayerGames());
+//        System.out.println(player.getPlayerGames());
         /*
         String[] columnNames = {"Kolumna 1", "Kolumna 2", "Kolumna 3","Kolumna 1", "Kolumna 2"};
         ArrayList<ArrayList<String>> data = player.getPlayerGames();
