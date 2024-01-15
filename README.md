@@ -10,14 +10,28 @@ Projekt w całości napisany jest w języku Java wykorzystujący, między innymi
 
 ## Instalacja aplikacji
  * Zainstalowanie Java w wersji 17 lub nowszej
- * Pobranie pliku Chessmageddon.jar z folderu repozytorium out/artifacts/Chessmageddon_jar
+ * Pobranie pliku Chess.jar z folderu repozytorium out/artifacts/Chess_jar
+ * Uruchomienie pliku Chess.jar
 
 ---
 
-## Instalacja serwera
-* *Pamiętać o zainstalowaniu mysql* 
-* *i zaimportowaiu odpowiedniej bazy, którą trzeba dodać do projektu* 
-* *i o dobrym kanale tej bazy*
-* *i instrukcji odpalenia wszystkiego w kolejności*
-* *Do przemyślenia gdzie dać dokumentację i diagramy ( może jakieś linki tutaj? )*
-* *I co z testami no bo ani serwer ani klient w teorii nie powinni ich mieć a dobrze by było gdyby gość mógł sobie je sprawdzić*
+## Instalacja serwera i bazy
+* Zainstalować mysql
+* Zaimportować ChessServer.sql z folderu database pod adresem: "jdbc:mysql://localhost:3306/ChessServer" z użytkownikiem "root" i bez hasła
+* Pobrać plik Server.jar z folderu out/artifacts/Server_jar. (Jeśli się nie udało to oznacza że baza danych jest źle zaimportowana)
+* Uruchomić Server.jar
+* Następnie można uruchamiać plik Chess.jar
+
+---
+
+## Dokumentacja techniczna i użytownika
+Dokumentację umieszczamy w chmurze. Można ją pobrać z tego linku: [Dokumentacja](link)
+
+---
+
+## Licencja
+[Zobacz licencję]()
+
+## Testy
+Żeby zobaczyć testy należy pobrać cały projekt przy pomocy git-a.
+
