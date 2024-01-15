@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * Okno gry
@@ -39,6 +41,14 @@ public class GameWindow extends JFrame implements MyListener, ActionListener {
         setContentPane(Content);
         setSize(900,600);
         setVisible(true);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                player.quit();
+                super.windowClosing(e);
+            }
+        });
     }
 
     /**
@@ -78,7 +88,7 @@ public class GameWindow extends JFrame implements MyListener, ActionListener {
                 JDialog jd = new JDialog();
                 jd.getContentPane().setLayout(new GridBagLayout());
                 String end_mess = "KONIEC! ";
-                if (message == player.nick) end_mess += "WYGRAŁEŚ";
+                if (message.equals(player.nick)) end_mess += "WYGRAŁEŚ";
                 //else if (message == "WIADOMOŚĆ REMISU") end_mess += "REMIS";
                 else end_mess += "PRZEGRAŁEŚ";
                 jd.getContentPane().add(new JLabel(end_mess));

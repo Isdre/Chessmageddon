@@ -167,8 +167,13 @@ public class Client implements Runnable {
      * Kończy połączenie z serwerem.
      */
     public void quit() {
-        send("/quit");
-        shutdown();
+        try {
+            send("/quit");
+            shutdown();
+        } catch (Exception e) {
+
+        }
+
     }
 
     private void confirmed(String message) {

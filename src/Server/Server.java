@@ -153,6 +153,13 @@ public class Server implements Runnable {
                         sendMessage("Wrong");
                     }
                 }
+                else if(inMessage.startsWith("/quit")) {
+                    String leftName = nickname;
+                    broadcast(nickname + " left");
+                    shutdown();
+                    System.out.println(leftName + " left.    Online: " + connections.size());
+                    break;
+                }
             }
 
             System.out.println(nickname + " connected!    Online: " + connections.size());
@@ -211,6 +218,14 @@ public class Server implements Runnable {
                     if(message.startsWith("/quit")) {
                         String leftName = nickname;
                         broadcast(nickname + " left");
+                        for(Game g : games) {
+                            if(g.players[0] == this) {
+                                endGame(2);
+                            }
+                            else if(g.players[1] == this) {
+                                endGame(1);
+                            }
+                        }
                         shutdown();
                         System.out.println(leftName + " left.    Online: " + connections.size());
                         break;
@@ -277,36 +292,39 @@ public class Server implements Runnable {
          * @param winner kto wygral
          */
         public void endGame(int winner) {
-            Game tmp = new Game(game.players[0], game.players[1]);
-            if(winner == 1) {
-                int winning = this.nickname.equals(tmp.players[0].nickname) ? 0 : 1;
-                int loosing = this.nickname.equals(tmp.players[0].nickname) ? 1 : 0;
-                tmp.players[winning].systemMessage("You won");
-                tmp.players[loosing].systemMessage("You lost");
-                database.addGame(tmp.players[0].nickname, tmp.players[1].nickname, winning+1);
-                tmp.players[0].sendMessage("E" + tmp.players[winning].nickname);
-                tmp.players[1].sendMessage("E" + tmp.players[winning].nickname);
+            if(game != null) {
+                Game tmp = new Game(game.players[0], game.players[1]);
+                if(winner == 1) {
+                    int winning = this.nickname.equals(tmp.players[0].nickname) ? 0 : 1;
+                    int loosing = this.nickname.equals(tmp.players[0].nickname) ? 1 : 0;
+                    tmp.players[winning].systemMessage("You won");
+                    tmp.players[loosing].systemMessage("You lost");
+                    database.addGame(tmp.players[0].nickname, tmp.players[1].nickname, winning+1);
+                    tmp.players[0].sendMessage("E" + tmp.players[winning].nickname);
+                    tmp.players[1].sendMessage("E" + tmp.players[winning].nickname);
+                }
+                else if(winner == 2) {
+                    int winning = this.nickname.equals(tmp.players[0].nickname) ? 1 : 0;
+                    int loosing = this.nickname.equals(tmp.players[0].nickname) ? 1 : 0;
+                    tmp.players[winning].systemMessage("You won");
+                    tmp.players[loosing].systemMessage("You lost");
+                    database.addGame(tmp.players[0].nickname, tmp.players[1].nickname, winning+1);
+                    tmp.players[0].sendMessage("E" + tmp.players[winning].nickname);
+                    tmp.players[1].sendMessage("E" + tmp.players[winning].nickname);
+                }
+                else if(winner == 0) {
+                    tmp.players[0].systemMessage("Draw");
+                    tmp.players[1].systemMessage("Draw");
+                    database.addGame(tmp.players[0].nickname, tmp.players[1].nickname, 0);
+                    tmp.players[0].sendMessage("EDRAW");
+                    tmp.players[1].sendMessage("EDRAW");
+                }
+                tmp.players[0].systemMessage("endOfGame");
+                tmp.players[0].game = null;
+                tmp.players[1].systemMessage("endOfGame");
+                tmp.players[1].game = null;
             }
-            else if(winner == 2) {
-                int winning = this.nickname.equals(tmp.players[0].nickname) ? 1 : 0;
-                int loosing = this.nickname.equals(tmp.players[0].nickname) ? 1 : 0;
-                tmp.players[winning].systemMessage("You won");
-                tmp.players[loosing].systemMessage("You lost");
-                database.addGame(tmp.players[0].nickname, tmp.players[1].nickname, winning+1);
-                tmp.players[0].sendMessage("E" + tmp.players[winning].nickname);
-                tmp.players[1].sendMessage("E" + tmp.players[winning].nickname);
-            }
-            else if(winner == 0) {
-                tmp.players[0].systemMessage("Draw");
-                tmp.players[1].systemMessage("Draw");
-                database.addGame(tmp.players[0].nickname, tmp.players[1].nickname, 0);
-                tmp.players[0].sendMessage("EDRAW");
-                tmp.players[1].sendMessage("EDRAW");
-            }
-            tmp.players[0].systemMessage("endOfGame");
-            tmp.players[0].game = null;
-            tmp.players[1].systemMessage("endOfGame");
-            tmp.players[1].game = null;
+
         }
 
         /**

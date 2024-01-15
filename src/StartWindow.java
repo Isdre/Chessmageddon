@@ -5,6 +5,8 @@ import chess_server_package.MyListener;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 /**
@@ -39,6 +41,13 @@ public class StartWindow extends JFrame implements ActionListener, MyListener {
         _buttonSign.addActionListener(this);
         Thread t = new Thread(player);
         t.start();
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                player.quit();
+                super.windowClosing(e);
+            }
+        });
     }
 
     /**
