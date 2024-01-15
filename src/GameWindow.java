@@ -86,12 +86,15 @@ public class GameWindow extends JFrame implements MyListener, ActionListener {
             case GAME_ENDED:
                 System.out.println(message);
                 JDialog jd = new JDialog();
+                jd.setPreferredSize(new Dimension(100, 80));
                 jd.getContentPane().setLayout(new GridBagLayout());
                 String end_mess = "KONIEC! ";
-                if (message.equals(player.nick)) end_mess += "WYGRAŁEŚ";
-                //else if (message == "WIADOMOŚĆ REMISU") end_mess += "REMIS";
-                else end_mess += "PRZEGRAŁEŚ";
-                jd.getContentPane().add(new JLabel(end_mess));
+                if (message.equals(player.nick)) end_mess += "WYGRAŁEŚ!";
+                else if (message.equals("DRAW")) end_mess += "REMIS!";
+                else end_mess += "PRZEGRAŁEŚ!";
+                jd.getContentPane().setLayout(new BorderLayout());
+                JLabel endLabel = new JLabel(end_mess);
+                jd.getContentPane().add(endLabel,BorderLayout.NORTH);
                 JButton end = new JButton();
                 end.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -100,7 +103,7 @@ public class GameWindow extends JFrame implements MyListener, ActionListener {
                         dispose();
                     }
                 } );
-                jd.add(end);
+                jd.add(end,BorderLayout.SOUTH);
                 jd.pack();
 
                 jd.setLocationRelativeTo(Content);

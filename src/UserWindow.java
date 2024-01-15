@@ -20,7 +20,7 @@ public class UserWindow extends JFrame implements MyListener {
     private JButton _acceptInv;
     private JButton _rejectInv;
     private JLabel _nickInv;
-    private JPanel onlinePlayers;
+    private JPanel stats;
 
     public UserWindow(Client client){
         super("Chessmageddon");
@@ -48,7 +48,22 @@ public class UserWindow extends JFrame implements MyListener {
                 pack();
             }
         } );
+        //getPlayerStatistics lub getPlayerGames()
+        /*
+        System.out.println(player.getPlayerGames());
+        String[] columnNames = {"Kolumna 1", "Kolumna 2", "Kolumna 3","Kolumna 1", "Kolumna 2"};
+        ArrayList<ArrayList<String>> data = player.getPlayerGames();
+        Object[][] dataArray = new Object[data.size()][];
+        for (int i = 0; i < data.size(); i++) {
+            ArrayList<String> row = data.get(i);
+            dataArray[i] = row.toArray(new Object[0]);
+        }
 
+        DefaultTableModel model = new DefaultTableModel(dataArray, columnNames);
+        JTable playerGames = new JTable(model);
+        JScrollPane scrollPane = new JScrollPane(playerGames);
+        stats.add(scrollPane);
+        */
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setContentPane(Content);
