@@ -33,6 +33,8 @@ Dokumentację umieszczamy w chmurze. Można ją pobrać z tego linku: [Dokumenta
 Projekt na licencji BSD 2-Clause "Simplified"
 [Zobacz licencję](https://github.com/Isdre/Chessmageddon/blob/master/LICENSE)
 
+---
+
 ## Testy
 Żeby zobaczyć testy należy pobrać cały projekt przy pomocy git-a.
 
