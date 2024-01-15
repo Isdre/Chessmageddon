@@ -27,12 +27,14 @@ public class UserWindow extends JFrame implements MyListener {
         player = client;
         player.listener = this;
         UserInterface.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED,Color.BLACK,Color.BLACK), player.nick));
+        //Przycisk odpowiedzialny za zapraszanie
         _invite.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (_nickOpponent.getText() == "") return;
                 player.playWith(_nickOpponent.getText());
             }
         } );
+        //Przycisk odpowiedzialny za akceptowanie zaproszeń
         _acceptInv.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 player.confirm('B');
@@ -41,6 +43,7 @@ public class UserWindow extends JFrame implements MyListener {
                 dispose();
             }
         } );
+        //Przycisk odpowiedzialny za odrzucanie zaproszeń
         _rejectInv.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 player.reject();
@@ -49,8 +52,9 @@ public class UserWindow extends JFrame implements MyListener {
             }
         } );
         //getPlayerStatistics lub getPlayerGames()
-        /*
+
         System.out.println(player.getPlayerGames());
+        /*
         String[] columnNames = {"Kolumna 1", "Kolumna 2", "Kolumna 3","Kolumna 1", "Kolumna 2"};
         ArrayList<ArrayList<String>> data = player.getPlayerGames();
         Object[][] dataArray = new Object[data.size()][];

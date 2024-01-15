@@ -84,6 +84,7 @@ public class GameWindow extends JFrame implements MyListener, ActionListener {
                 break;
             case GAME_ENDED:
                 System.out.println(message);
+                //Komunikat końca meczu
                 JDialog jd = new JDialog();
                 jd.addWindowListener(new WindowListener() {
                     @Override
