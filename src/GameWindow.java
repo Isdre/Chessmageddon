@@ -6,15 +6,13 @@ import com.chess.engine.board.Board;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 /**
  * Okno gry
  */
 public class GameWindow extends JFrame implements MyListener, ActionListener {
+    private GameWindow instance;
     private JPanel Content;
     private JPanel _chat;
     private JPanel _board;
@@ -26,6 +24,7 @@ public class GameWindow extends JFrame implements MyListener, ActionListener {
 
     public GameWindow(Client client,char color){
         super(client.nick+"'s Game");
+        instance = this;
         player = client;
         player.listener = this;
         System.out.println(color);
@@ -86,6 +85,46 @@ public class GameWindow extends JFrame implements MyListener, ActionListener {
             case GAME_ENDED:
                 System.out.println(message);
                 JDialog jd = new JDialog();
+                jd.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowOpened(WindowEvent e) {
+
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        new UserWindow(player);
+                        dispose();
+                        instance.dispose();
+                    }
+
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        new UserWindow(player);
+                        jd.dispose();
+                        dispose();
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent e) {
+
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent e) {
+
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent e) {
+
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent e) {
+
+                    }
+                });
                 jd.setPreferredSize(new Dimension(100, 80));
                 jd.getContentPane().setLayout(new GridBagLayout());
                 String end_mess = "KONIEC! ";
