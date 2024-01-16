@@ -44,6 +44,7 @@ public class GameWindow extends JFrame implements MyListener, ActionListener {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                player.whoWin(2);
                 player.quit();
                 super.windowClosing(e);
             }
