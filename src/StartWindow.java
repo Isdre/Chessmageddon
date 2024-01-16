@@ -88,7 +88,7 @@ public class StartWindow extends JFrame implements ActionListener, MyListener {
      */
     public boolean signPerformed() {
         try {
-            if (String.valueOf(_username.getPassword()) == "" || String.valueOf(_passwordSign.getPassword()) == "") return false;
+            if (String.valueOf(_username.getPassword()).equals("") || String.valueOf(_passwordSign.getPassword()).equals("")) return false;
             return  player.register(String.valueOf(_username.getPassword()), String.valueOf(_passwordSign.getPassword()));
         } catch (IOException ex) {
             throw new RuntimeException(ex);

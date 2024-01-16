@@ -118,6 +118,15 @@ public class ChessBoard {
                 b.setIcon(holdPiece);
                 previousB.setIcon(null);
                 yourTurn = false;
+                if (((x1+y1).equals("e1") && (x2+y2).equals("g1")) || ((x1+y1).equals("e8") && (x2+y2).equals("g8"))) {
+                    holdPiece = chessBoardSquares[7][7].getIcon();
+                    chessBoardSquares[7][5].setIcon(holdPiece);
+                    chessBoardSquares[7][7].setIcon(null);
+                } else if ((x1+y1).equals("e1") && (x2+y2).equals("c1") || ((x1+y1).equals("e8") && (x2+y2).equals("c8"))) {
+                    holdPiece = chessBoardSquares[7][0].getIcon();
+                    chessBoardSquares[7][3].setIcon(holdPiece);
+                    chessBoardSquares[7][0].setIcon(null);
+                }
                 //WYŚLIJ GO
                 _player.makeMove(x1+y1+x2+y2);
             }
@@ -170,6 +179,15 @@ public class ChessBoard {
             logicBoard = moveTransition.getToBoard();
             b.setIcon(holdPiece);
             previousB.setIcon(null);
+            if (((x1+y1).equals("e1") && (x2+y2).equals("g1")) || ((x1+y1).equals("e8") && (x2+y2).equals("g8"))) {
+                holdPiece = chessBoardSquares[0][7].getIcon();
+                chessBoardSquares[0][5].setIcon(holdPiece);
+                chessBoardSquares[0][7].setIcon(null);
+            } else if ((x1+y1).equals("e1") && (x2+y2).equals("c1") || ((x1+y1).equals("e8") && (x2+y2).equals("c8"))) {
+                holdPiece = chessBoardSquares[0][0].getIcon();
+                chessBoardSquares[0][3].setIcon(holdPiece);
+                chessBoardSquares[0][0].setIcon(null);
+            }
             //SPRAWDŹ CZY KONIEC GRY
             if (logicBoard.currentPlayer().isInCheckMate()) return "LOST";
             else if (logicBoard.currentPlayer().isInStaleMate()) return "DRAW";

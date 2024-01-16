@@ -14,7 +14,7 @@ public class Stats implements Runnable {
         data = d;
     }
     public void showStats() {
-        String[][] fin = new String[data.size()][data.getFirst().size()];
+        String[][] fin = new String[data.size()][data.get(0).size()];
         for(int i=0; i<data.size(); i++) {
             fin[i] = data.get(i).toArray(fin[i]);
         }
