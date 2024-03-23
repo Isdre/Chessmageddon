@@ -38,3 +38,5 @@ Projekt na licencji BSD 2-Clause "Simplified"
 ## Testy
 Żeby zobaczyć testy należy pobrać cały projekt przy pomocy git-a.
 
+![o1](Chess.png)
+![o2](Szachy1.png)
